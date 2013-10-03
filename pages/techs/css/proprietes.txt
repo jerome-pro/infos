@@ -1,0 +1,187 @@
+{{indexmenu_n>25}}
+
+====== PROPRIETES COURANTES ======
+===== Bord arrondi =====
+|**Border-Radius** |<file>.oneClass {
+   -webkit-border-radius: 10px;
+   -moz-border-radius: 10px;
+   border-radius: 10px;
+}</file>|
+
+<note tip>
+**Arrondir angle par angle :**
+
+Ajouter les angles visés dans la déclaration de la propriété (**top-right** / **bottom-right** / **top-left** /**bottom-left**).
+\\ \\  
+ici, uniquement top-left & bottom-right:
+|<file>
+   -webkit-border-top-left-radius: 20px;
+   -moz-border-radius-topleft: 20px;
+   border-top-left-radius: 20px;
+   
+   -webkit-border-bottom-right-radius: 20px;
+   -moz-border-radius-bottomright: 20px;
+   border-bottom-right-radius: 20px;
+</file>|{{:techs:css:roundingPartialBorder.png?0x0}}|
+</note>
+\\ 
+===== Ombres =====
+==== Texte ====
+
+|**Text-Shadow**|<file>p {
+   text-shadow: 0px -1px 1px #000;
+}</file> avec:\\ {{:techs:html5:text_shadow.png?0x0}}|
+<note tip>
+**Effet de lettre collées** :
+
+|**texte foncé / fond clair**  |placer l'ombre en **bas à droite** - l'ombre est **claire**.\\ \\ par exemple :<file> text-shadow: 1px 1px 2px #fff;</file>|
+
+|**texte clair / fond foncé**  |placer l'ombre en **haut à gauche** - l'ombre est **foncée**.\\ \\ par exemple :<file> text-shadow: -1px -1px 2px #000;</file>||
+
+</note>
+\\ 
+=== Box ===
+
+|**Box-Shadow**|**ordre** des attributs **identique** à 'text-shadow' <file>
+/* Ombre à l'extérieur */
+.vermeer {
+   -webkit-box-shadow: 4px 4px 5px #282b1f;
+   -moz-box-shadow: 4px 4px 5px #282b1f;
+   box-shadow: 4px 4px 5px #282b1f;
+}</file><file>
+/* Ombre à l'intérieur */
+.vermeer {
+   -webkit-box-shadow: inset 4px 4px 5px #282b1f;
+   -moz-box-shadow: inset 4px 4px 5px #282b1f;
+   box-shadow: inset 4px 4px 5px #282b1f;
+}</file>||
+
+===== Transparence =====
+
+|**RGBa / HSLa** \\ (conversion [[http://hex2rgba.devoth.com/|HEX -> RGBa]])|Gestion de la transparences des **couleurs** (4eme attribut): <file>.halfColor_rgb {color: rgba(223, 231, 177, 0.5);}   /* transparency = 0.5  */
+
+.quarterColor_hsl {color: hsla(75, 58, 80, .25);   /* transparency = 0.25  */}
+</file>la gestion de la transparence pour un élément html se fait via : opacity<file>
+div { opacity:0.5; }  
+
+/* tous les élément contenus dans une <div> seront impactés */</file>|
+
+===== Transformation =====
+
+|**Transform** \\ (voir détails sur [[http://www.w3schools.com/css3/css3_2dtransforms.asp|W3Scholl]])||__changer la taille :__<file>{
+   -webkit-transform: scale(1.5);
+   -moz-transform: scale(1.5);
+   -o-transform: scale(1.5);
+   transform: scale(1.5);
+}</file>  __Faire tourner :__<file>{
+ul.colors li a:hover {
+   -webkit-transform: rotate(-10deg);
+   -moz-transform: rotate(-10deg);
+   -o-transform: rotate(-10deg);
+   transform: rotate(-10deg);
+}</file> __Etirer :__<file>{
+   -webkit-transform: skew(-10deg, 15deg);
+   -moz-transform: skew(-10deg, 15deg);
+   -o-transform: skew(-10deg, 15deg);
+   transform: skew(-10deg, 15deg);
+}</file>__déplacer :__<file>{
+   -webkit-transform: translate(25px, 50px);
+   -moz-transform: translate(25px, 50px);
+   -o-transform: translate(25px, 50px);
+   transform: translate(25px, 50px);
+}</file>| 
+
+<note warning>
+**Pour effectuer plusieurs transformations**
+
+Il faut placer les transformations les unes à la suite des autres, **séparées par un espace** :
+\\ \\ 
+Par exemple, **agrandissement et rotation** en même temps:
+<file>
+  -webkit-transform: scale(1.2) rotate(-5deg);
+  -moz-transform: scale(1.2) rotate(-5deg);
+  -o-transform: scale(1.2) rotate(-5deg);
+  transform: scale(1.2) rotate(-5deg);
+</file>
+</note>
+===== Transition =====
+
+|**Transition**|<file>{
+    transition: [transition-property] [transition-duration] [transition-timing-function] [transition-delay];
+}</file> soit, par exemple:<file>
+div {
+  transition: background-color 0.5s ease;
+  background-color: red;
+}
+div:hover {
+  background-color: green;
+}</file> On remarque que la **propriété visée par la transition** (ici "background-color") **doit être définie dans le bloc de style**.\\ [[https://developer.mozilla.org/en-US/docs/Web/CSS/transition-timing-function|transition-timing-function]] définie comment **s'opère la transformation** (début rapide/fin lente, linéaire, …)\\ \\ \\ Et avec les **spécificités par navigateur** :<file>
+#something {
+   opacity: 0.5;
+   -webkit-transition: opacity .2s ease-in-out;
+   -moz-transition: opacity .2s ease-in-out;
+   -o-transition: opacity .2s ease-in-out;
+   transition: opacity .2s ease-in-out;
+}</file>|
+
+<note warning>
+Pour appliquer **plusieurs transitions** à **plusieurs propriétés**, il faut les écrire les unes à la suite des autres,  **séparées par une virgule** :
+<file>
+   -webkit-transition: width 0.2s linear, background 0.3s ease-in-out;
+   -moz-transition: width 0.2s linear, background 0.3s ease-in-out;
+   -o-transition: width 0.2s linear, background 0.3s ease-in-out;
+   transition: width 0.2s linear, background 0.3s ease-in-out;
+</file>
+</note>
+
+<note tip>
+Pour appliquer la **même transition** à **toutes les propriétés** définies, on utilise "**all**" :
+<file>
+   -webkit-transition: all .3s ease-in-out;
+   -moz-transition: all .3s ease-in-out;
+   -o-transition: all .3s ease-in-out;
+   transition: all .3s ease-in-out;
+</file>
+</note>
+
+===== Polices =====
+
+|**Real Fonts** \\ \\ \\ (voir [[techs:web_design:polices#melanger_les_polices|règles de typographie]])\\ \\ \\ __ressources:__\\     * [[http://www.google.com/fonts|google fonts]]\\  * [[http://www.fontsquirrel.com/|Font squirrel]]\\   * [[https://typekit.com/|typekit]]\\ * [[http://www.fonts.com/web-fonts|font.com]]|déclaration d'une police   ([[http://www.fontsquirrel.com/tools/webfont-generator| générateur de code]]) : <file>@font-face {
+   font-family: "League Gothic";
+   src: url("fonts/LeagueGothic.ttf")
+   format("truetype");
+}</file>puis utilisation classique :<file>h1 {
+  font-family: "League Gothic", Arial, sans-serif;}  
+   
+  /* polices de secours : Arial puis police de type sans serif  */
+}</file>|
+
+__Autres ressource :__
+  * [[http://nicewebtype.com/notes/2009/10/30/how-to-use-css-font-face/| How to use CSS @font-face]]
+
+
+<note important>
+Rappel sur les polices supportées par tout les systèmes - **web-safe fonts** : 
+  * Arial
+  * Helvetica
+  * Georgia
+  * Times New Roman
+</note>
+
+
+
+===== Fonds multiples =====
+|**Multiple Backgrounds**|possibilité de définir plusieurs background ;<file>.uneClasse {
+  ...
+  background: #3e4b29;                     /* 2eme à être pris en compte */ 
+  background: #rgba(62, 75, 41, 0.5);      /* 1er à être pris en compte  */ 
+}</file> different de : <file>.uneAutreClasse {
+  ...
+  background: url('city.png') no-repeat top center,  url('bg.png') repeat;
+  
+  /* avec "bg.png" : background de secours  */
+}</file>|
+
+
+===== Gradient =====
+|**Gradients**|syntaxe compliquée. \\ Utiliser un générateur online|

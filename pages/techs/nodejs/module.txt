@@ -1,0 +1,106 @@
+====== MODULE ======
+===== Création =====
+Il faut utiliser "exports" dans le fichier du module :
+<file>
+var highfive = function() {
+  console.log("<smack!!>");
+};
+
+exports = highfive;
+</file>
+
+ou 
+
+<file>
+exports.highfive = function() {
+  console.log("<smack!!>");
+};
+</file>
+
+<note warning>
+Pour exporter plusieurs méthodes, il faut utiliser la notation "exports.<function_name> = <function_name>" :
+<file>
+/* methods to export */
+var warn = function(message) {...};
+var info = function(message) {...};
+var error = function(message) {...};
+
+/* Export */
+exports.warn = warn;
+exports.info = info; 
+exports.error = error; 
+</file>
+</note>
+
+===== NPM =====
+NPM (Node Package Manager) est le gestionnaire de package de Node.js
+
+==== Installer un module ====
+<file>
+npm insta­ll under­score
+</file>
+<note tip>
+Le package est installer dans un **repository** visible par Node au **runtime**.
+
+Pour avoir un package **disponible dans la REPL**, il faut effectuer une **installation globale**:
+<file>
+npm insta­ll coffe­e-script -g 
+</file>
+</note>
+
+<note warning>
+Si **Node à besoin de coffe-script au RUNTIME**, il faut faire une installation dans le repository:
+<file>
+npm insta­ll coffe­e-script
+</file>
+**sans l'option "-g"**
+</note>
+
+=== install options ===
+^  option  ^  syntaxe  ^  exemple  ^  commentaire  ^
+|version |npm install <module>@<version>| npm install less**@1.3.1**|installe la version 1.3.1 du module "less"|
+
+
+
+
+==== Définir les dépendances ====
+Dans le fichier **package.json**, il est possible de définir les **dépendances** (modules) nécessaires à l'**exécution d'une application Node**.
+
+<file>
+{
+  "name": "My Awesome Node App",
+  "version": "1",
+  "dependencies": {
+     "connect" : "2.2.1",
+     "underscore" : "1.3.3" 
+  }
+}
+
+/* 
+  définit 2 dépendances (pour mon application "My Awesome Node App"):
+    - connect (version 2.2.1)
+    - underscore" (version 1.3.3)
+*/
+</file>
+<note tip>
+__Définir une plage de version :__
+
+En ajoutant "**~**" devant le numéro de version, on définit des plages de version.
+| <file>"connect": "~1"</file> | **>= 1.0.0** \\   ** < 2.0.0** |**DANGEREUX** (changement d'API possible)  |
+| <file>"connect": "~1.8"</file> | **>= 1.8** \\   ** < 2.0.0** |**DANGEREUX** (changement d'API possible)  |
+| <file>"connect": "~1"</file> | **>= 1.8.7** \\   ** < 1.9.0** |Considéré comme **SUR**  |
+
+Si les numéros de version **respecte la "norme"** suivante:
+
+{{:techs:nodejs:semantic_versioning.png?0x0}}
+\\ **[[http://semver.org/]]**
+
+</note>
+<file>
+</file>
+
+<file>
+</file>
+
+<file>
+</file>

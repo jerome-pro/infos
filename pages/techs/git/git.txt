@@ -1,0 +1,47 @@
+{{indexmenu_n>1}}
+
+====== GIT ======
+
+
+[[:techs:git:basics|BASES]]
+
+
+[[:techs:git:staging_remotes|STAGING & REMOTE]]
+
+
+[[:techs:git:cloning_branching|CLONING & BRANCHING]]
+
+
+[[:techs:git:collaboration|COLLABORATION]]
+
+[[:techs:git:tag|TAG]]
+
+[[:techs:git:rebase|REBASE]]
+
+[[:techs:git:stashing|STASHING]]
+
+[[:techs:git:submodule|SUBMODULE]]
+
+[[:techs:git:reflog|REFLOG]]
+
+====== Ressources ======
+
+[[http://git-scm.com/|git-scm homepage]]
+
+[[https://help.github.com/|github help page]]
+
+[[http://gitimmersion.com/lab_03.html|git Immersion]]
+
+[[http://gitready.com/advanced/2009/03/11/easily-manage-git-remote-branches.html|git ready]]
+
+[[http://www.ndpsoftware.com/git-cheatsheet.html|git cheatsheet]]
+
+[[http://ftp.newartisans.com/pub/git.from.bottom.up.pdf|git from the bottom up]]
+
+[[https://peepcode.com/products/git-internals-pdf|git internals PDF]]
+
+[[http://nvie.com/posts/a-successful-git-branching-model/|git-flow blog post]]
+
+[[http://scottchacon.com/2011/08/31/github-flow.html|GitHub Flow]]
+
+

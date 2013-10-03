@@ -1,0 +1,38 @@
+====== RESPONSIVE WEB DESIGN ======
+
+Un site "responsive" est principalement construit avec deux composantes :
+  * viewport meta tag
+  * CSS3 media queries
+
+===== viewport meta tag =====
+<file>
+<meta name="viewport" content="initial-scale=1">
+</file>
+
+voir **[[http://webdesign.tutsplus.com/tutorials/htmlcss-tutorials/quick-tip-dont-forget-the-viewport-meta-tag/|Quick Tip: Don’t Forget the Viewport Meta Tag]]**
+\\ 
+
+===== CSS3 media queries =====
+<file>
+@media screen and (min-width: 321px) and (max-width: 480px) {
+  img { display: none; }
+}
+</file>
+
+===== Conversion des dimensions =====
+
+Il faut utiliser la formule (magique) suivante :
+
+{{:techs:responsive_web_design:conversion_formula.png?0x0}}
+
+  * __**context**__ : le conteneur parent
+  * __**target**__ : l'élément don't on veut convertir la taille
+  * __**result**__ : la taille en **pourcentage** (conteneur (div, body, ...) ou **em** (police, espacement des lignes …)
+
+(utiliser l'outil **[[http://responsv.com/flexible-math/|Flexible Math]]**).
+
+\\ 
+\\ 
+__**RAPPEL SUR LE CONTEXTE HHTML :**__
+
+{{:techs:responsive_web_design:html_context.png?0x0}}

@@ -1,0 +1,30 @@
+{{indexmenu_n>6}}
+
+====== REBASE ======
+
+===== Rebase =====
+
+<file>
+git rebase master
+</file>
+
+===== Rebase Intéractif =====
+
+
+<file>
+git rebase HEAD^
+
+git rebase -i HEAD~4
+</file>
+
+
+Puis, utiliser les **commandes suivantes** pour modifier les commits :
+
+
+
+|<file> pick </file>|rejoue le commit. Modification de **l'ordre** des commits|
+|<file> reword </file>|rejoue le commit. Modification des **commentaires**|
+|<file> pick </file>|rejoue le commit. Modification de **l'ordre** des commits|
+|<file> édit </file>|arrête le commit : nous pouvons le modifier|
+|<file> squash </file>|fusionne un commit avec le commit qui le précéde|
+

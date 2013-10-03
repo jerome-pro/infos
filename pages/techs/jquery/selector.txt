@@ -1,0 +1,50 @@
+{{indexmenu_n>1}}
+
+====== SELECTEURS ======
+
+
+===== Basics selectors =====
+
+| $("**p**"); | par type d'élément   |
+| $("**#ID_Container**"); | par ID   |
+| $("**.classname**"); | par classe  |
+
+===== Descendant selectors =====
+Un sélecteur descendant est constitué de **deux ou de plusieurs sélecteurs séparés par des espaces**. 
+
+Un sélecteur descendant de la forme "A B" agit lorsqu'un élément "B" est un **descendant arbitraire** d'un élément ancêtre "A".
+
+<code>
+$("#destinations li");
+</code>
+
+<note important>
+**descendant arbitraire** signifie que le sélecteurs agit quelque soit le niveau d'imbrication. Il selectionne les enfants, les petits-enfants, les arrière-petits-enfants, etc …
+
+
+pour restreindre l'imbrication il faut utiliser les "child selector"
+</note>
+
+===== Child selectors =====
+
+Un child selector agit lorsqu'un élément est l'**enfant** (et non petit-enfant, arrière-petit-enfant, etc …) d'un élément. 
+
+Un sélecteur d'enfant est constitué de deux ou de plusieurs sélecteurs séparés par **">"**.
+
+<code>
+$("#destinations > li");
+</code>
+
+===== Autres =====
+
+| $("selecteur_1 **,** sélecteur_2 **,** ..."); | sélectionne **plusieurs éléments d'un coup**   |
+| $("ul **li:first**"); ($("#id_ul **li:first**") | selection le premier élément d'une liste |
+| $("ul **li:first**"); | selection le dernier élément d'une liste |
+| $("ul **li:pair**"); | selection les éléments pair d'une liste |
+| $("ul **li:odd**"); | selection les éléments impair d'une liste |
+
+===== Ressources =====
+
+[[http://refcardz.dzone.com/refcardz/jquery-selectors | Refcard ]]
+
+[[http://api.jquery.com/category/selectors/ | jQuery API documentation ]]

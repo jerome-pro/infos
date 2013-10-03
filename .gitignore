@@ -1,0 +1,20 @@
+# On ne garde que les répertoires
+#  "pages" et "media".
+
+.DS_Store
+**/.DS_Store
+**/**/.DS_Store
+.htaccess
+/attic/*
+/cache/*
+deleted.files
+_dummy
+/index/*
+/locks/*
+# /media/*        ## on le garde
+/media_attic/*
+/meta/*
+# /pages/*        ## on le garde
+security.png
+security.xcf
+/tmp

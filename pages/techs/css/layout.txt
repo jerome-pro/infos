@@ -1,0 +1,275 @@
+{{indexmenu_n>20}}
+
+====== LAYOUT ======
+===== Normal document flow =====
+Les navigateurs affichent le contenu **dans l'ordre où il se trouve dans le document HTML**.
+
+  * les éléments de niveau bloc - **block level éléments** (DIV, P, TABLE, FORM, etc.) - sont affichés sur leur propre ligne, **ils sont empilés les un sur les autres**. 
+  * les éléments en-ligne - **Inline elements** (IMG, SPAN, INPUT, etc.) - sont **affichés horizontalement** jusqu'à ce que le qu'ils atteignent la limite horizontale du conteneur parent (élément de niveau bloc). Puis, l'affichage se poursuit sur la ligne suivante.
+
+
+__Resources:__
+
+[[http://www.rainbodesign.com/pub/css/css-positioning-2.html]]
+
+===== Float =====
+
+
+L'attribut **float** permet d'**aligner un élément** à gauche ou à droite **dans le conteneur**.
+
+
+{{:techs:css:float.png?700x1010}}
+
+
+==== Propriétés ====
+
+
+L'élément flottant **sort du flow normal**.
+
+
+L'élément qui le suit :
+
+
+    * **prends sa place**     - si il n'est pas lui-même flottant.
+    * **s'aligne à coté**     de l'élément flottant si il est flottant lui-même. (*)
+(*) :
+
+
+Lorqu'il n'y a plus de place dans le conteneur, l'élément** flottant suivant est placer en dessous**  :
+
+
+{{:techs:css:float_line_break.png?600x204}}
+
+
+Lorsque la taille des éléments est différentes, la position de l'élément **flottant suivant n'est pas forcément où on l'attend **:
+
+
+{{:techs:css:float_height.png?600x215}}
+
+==== Exemples classiques : ====
+
+
+    * Image avec du texte sur un coté.
+    * barre de menu horizontal (//[[http://stackoverflow.com/questions/11805352/floatleft-vs-displayinline-vs-displayinline-block-vs-displaytable-cell | deprecated]]//  -  préférer [[techs:css:layout#display_property|display:inline-block;]]  ).
+
+==== clearfix ====
+
+
+Le clearfix permet de résoudre les problèmes rencontrés avec l'attribut CSS  "**float**" :
+
+
+    * **conteneur trop petit** par rapport à l'élément flottant.
+{{:techs:css:float_container_too_small.png?350x160}}
+
+
+    * **pas d'élément dans le conteneur** - tous les enfants sont flottants (([[http://complexspiral.com/publications/containing-floats/|zero-height container problem ]]).).
+{{:techs:css:float_zero_element.png?350x119}}
+
+
+Une méthode reconnue : le clearfix de [[http://nicolasgallagher.com/micro-clearfix-hack/|Nicolas Gallagher]]
+
+
+<file>
+/* For modern browsers */
+.container:before,
+.container:after {
+    content:"";
+    display:table;
+}
+.container:after {
+    clear:both;
+}
+/* For IE 6/7 (trigger hasLayout) */
+.container {
+    zoom:1;
+}
+</file>
+
+
+<note warning> Il s'agit de turnaround proposé par de développeurs (talentueux) mais qui **peuvent être dépassés**  au moment on vous lisez ces lignes.
+
+
+le clearfix ci-dessus est recommandé aujourd'hui (**2013**).  </note>
+
+==== Ressources ====
+[[http://www.xul.fr/css/float-demo.php]]
+
+
+===== Position =====
+
+Les valeurs possibles sont :
+<file>
+position: static / relative / absolute / fixed
+</file>
+
+
+**Tous** les éléments du **flow normal** sont par défaut en **position : static**.
+
+Dés que l'on utilise une **valeur autre que "static"**, l'élément est dit positionné (**positioned élément**).
+
+<note important>
+**Seul les éléments positionnés** (relative / absolute / fixed) peuvent utiliser : 
+  * les propriétés de placement suivantes : **top**, **left**, **bottom**, and **right**.
+  * **z-index**
+
+<file>
+.button {
+  float: right;
+  
+  position : relative;
+  bottom: -3px;
+  z-index : 1;
+}
+</file>
+
+</note>
+
+<note warning>
+Pour le navigateur, un élément positionné avec **relative** conserve sa place dans le flow normal - place par défaut, **sans tenir compte des décalages** produit par le positionnement relatif.
+</note>
+
+<note warning>
+Les éléments positionnés avec **absolute** et **fixes** ne font **plus partie du flow normal**.
+</note>
+
+==== absolute positioning ====
+  * Le positioning "**absolute**" place l'élément aux valeurs spécifiées **par rapport au conteneur ancêtre le plus proche ayant un positionning "relative".** Si il n'y en à pas, le conteneur choisi est la fenêtre du navigateur.
+ 
+==== fixed positioning ====
+  * Le positioning "**fixed**" place l'élément aux valeurs spécifiées systématiquement **par rapport à la fenêtre du navigateur**. 
+  * L'élément est **toujours visible**, même lorsque la page est **scrollée**. 
+===== Centrering =====
+
+==== block element ====
+<file>
+margin: 0 auto;
+</file>
+
+==== inline element ====
+<file>
+text-align:center
+</file>
+
+
+===== Display property =====
+<file>
+display: none / block / inline / inline-block
+</file>
+
+
+===== Best practises =====
+==== margin ====
+
+  * **utiliser le raccourci** : margin : 0 0 10px 0; /*top right bottom left*/
+  * **consistent margins** : appliquer des marges sur chaque élément du layout plutôt que d'utiliser la marge résultantes d'un autre élément. En cas de modifications du layout, l'ensemble reste cohérent. :
+**préférer :**
+<file>
+.header {
+   margin: 20px 0 40px 0;
+}
+.feature {
+   margin: 20px 0;
+}
+.body {
+   margin: 10px 0;
+}
+</file>
+
+
+**éviter**:
+<file>
+.feature {
+   margin: 20px 0 40px 0;
+}
+ 
+/* "header" & "body" utilisent les marges de "feature" */
+</file>
+
+  * connaitre les règles du **recouvrement des marges** ([[http://www.w3.org/TR/CSS2/box.html#collapsing-margins | collapsing Margins]]) 
+
+
+==== Image ====
+=== image use ===
+L'image fait-elle partie du **contenu ou du layout** ?
+  * si l'image fait partie du **contenu** => elle doit être traitée comme un **élément en ligne**. 
+Elle peut ainsi posséder un commentaire associé - attribut alt de la balise <img> :
+<file>
+<h4>bla bla blabla bal ...</h4>
+<ul>
+   <li><img src="monImage.jpg" alt="mon image de contenu" /></li>
+</ul>
+
+</file>
+
+
+  * si l'image fait partie du **layout** => elle doit être traitée comme un **arrière-plan**. On évite ainsi les répétitions pour un élément de style (DRY principle):
+<file>
+document html:
+
+<h1>bla bla blabla bal ...</h1>
+</file>
+
+<file>
+fichier css:
+
+h1 {
+   background: url(monImage.jpg);
+   margin-bottom: 10px;
+   padding-bottom: 10px;
+}
+
+</file>
+
+== resizing image ==
+overflow crop method :
+
+1. ajouter une classe 'crop' au **conteneur des images**: 
+<file>
+<h4>Rental Products</h4>
+<ul class="rental">
+   <li class="crop">
+      <img src="snowboard.jpg" alt="Snowboard" />
+   </li>
+</file>
+
+2. puis définir les styles liés à cette classe pour éviter **les déformations lors des changement de dimensions d'une image** : 
+
+__pour le mode paysage :__   
+<file>   
+.crop {
+   height: 300px;
+   width: 400px;
+   overflow: hidden;
+}
+
+.crop img {
+   height: auto;
+   width: 400px;
+}
+</file>
+
+__pour le mode portrait :__  
+<file>   
+.crop {
+   height: 300px;
+   width: 400px;
+   overflow: hidden;
+}
+
+.crop img {
+   height: 300px;
+   width: auto;
+}
+</file>
+
+<note warning>
+Il est préférable si possible de modifier les images sur le serveurs (en les retouchants dans photoshop par exemples avant utilisation) car cette méthode reste fragile et ne corrige pas correctement tous les cas rencontrés.
+</note>
+
+==== Reset ====
+Reseter les styles des navigateurs, permet de **réduire les différences** de comportements **entre les  navigateurs** face à nos feuilles de styles CSS.
+  * [[http://meyerweb.com/eric/tools/css/reset/|Eric Meyer's Reset]]
+  * [[http://necolas.github.io/normalize.css/|Normalize.css]]
+===== Ressources =====
+
+[[http://www.barelyfitz.com/screencast/html-training/css/positioning/]]

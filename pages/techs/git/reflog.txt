@@ -1,0 +1,65 @@
+{{indexmenu_n>9}}
+
+====== REFLOG ======
+
+
+//**relflog **//est un journal (log) des position de la HEAD durant les 30 derniers jours par défaut  (voir : [[http://gitolite.com/concepts/reflog.html|what the heck is a reflog and why is it so important?]])
+
+
+<file>
+git reflog
+</file>
+
+
+affiche la l'historique sous form de liste.
+
+
+<file>
+git log --walk-reflogs
+</file>
+
+
+Affiche cet historique avec le même format que la command log (elle fournit plus de détails que "git reflog".
+
+<note warning>
+reflog n'existe que dans le **dépôt local**.
+</note>
+
+===== Récupérer un commit "détaché" =====
+
+
+un commit détaché est un commit qui n'est plus lié à une branche (suite à un [[:techs:git:staging_remotes#se_positionner_sur_un_commit_particulier|hard reset]]) :
+
+
+{{:techs:git:git_detached_commit.png?393x189}}
+
+
+On effectue les commandes suivantes :
+
+
+<file>
+git reflog  # donne la liste de tous le SHA1 (même les commit "supprimés)
+
+git reset --hard <sha1_commit>    (ex : git reset --hard 2e62107)
+</file>
+
+
+<note tip> reflog affiche les informations comme ceci :
+<code>
+43c13e7 HEAD@{0}: reset: moving to
+
+43c1 2e62107 HEAD@{1}: commit: Add third section.
+
+…
+</code>
+
+
+Aussi, peut-on écrire le **nom fourni pas reflog** plutôt que le SHA1 d'un commit :
+<file>
+git reflog  # donne la liste de tous le SHA1 (même les commit "supprimés)
+
+git reset --hard HEAD@{1}
+</file>
+
+
+</note>

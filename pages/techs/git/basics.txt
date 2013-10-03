@@ -1,0 +1,157 @@
+{{indexmenu_n>1}}
+
+
+====== LES BASES ======
+
+
+===== Configuration de Git =====
+
+
+==== Informations ====
+
+
+=== Pour tous les repositories (--global) ===
+
+
+<file>
+git config --global user.name "jda"
+
+git config --global user.mail dantan.jerome@gmail.com
+</file>
+
+
+=== Spécifique au repository courant ===
+
+
+Il suffit de **ne pas ajouter** –global
+<file>
+git config user.name "jda"
+
+git config user.mail dantan.jerome@gmail.com
+</file>
+
+
+
+==== Customisation ====
+
+__**color.ui**__ : colorisation des commentaires et informations fournis par Git
+<file>
+git config --global color.ui true 
+</file>
+
+
+__**mergetool.keepBackup**__ :pas de fichiers ".orig" générés lors des merges
+<file>
+git config --global mergetool.keepBackup false  
+
+</file>
+
+__**core.autocrlf**__ : __ : conversion des caractères de fin de lignes entre windows et unix (mac OS) :
+<file>
+git config --core.autocrlf input   # unix & macOS
+
+git config --core.autocrlf true   # windows  
+
+</file>
+
+<note important>
+Certaines de ces customisations peuvent être faites via le fichier **.gitattributes**
+</note>
+==== Alias ====
+
+
+<file>
+git config [--global] alias <alias_name> <command_git>
+
+ex:
+git config --global alias.mylog "log --pretty=format : '%h %s [%an]' --graph"
+</file>
+
+
+<note tip>
+Il faut mieux créer ses alias dans la **section [alias] du fichier ".gitconfig"** du répertoire d'installation de Git.
+
+voir quelques exemples [[http://www.mediawiki.org/wiki/Git/aliases | ICI]].
+</note>
+
+
+===== Créer un REPO =====
+
+
+<file>
+git init
+</file>
+
+
+===== Workflow de base =====
+
+
+==== Controller ce qui a changé ====
+
+
+<file>
+git status
+</file>
+
+
+==== Ajouter un fichier dans la "staging area" ====
+
+
+<file>
+git add newFile.txt
+</file>
+
+
+<note tip>
+
+
+|git add file1.txt file2.txt |ajoute une liste de fichiers |
+|git add –-all |ajoute tous les fichier |
+|git add *.txt |ajoute les fichiers ".txt" du répertoire courant |
+|git add "*.txt" |ajoute les fichiers ".txt" de tout le projet |
+|git add docs/*.txt |ajoute les fichiers ".txt" du répertoire "docs" |
+|git add docs/ |ajoute tous les fichiers du répertoire "docs" |
+
+
+</note>
+==== Commiter les changements ====
+
+
+<file>
+git commit -m "Create a newFile.txt"
+</file>
+
+
+==== Voir l'historique des commits ====
+
+
+<file>
+git log
+
+git log -3 (voir les 3 derniers commits)
+</file>
+
+
+=== afficher sur une ligne : ===
+
+
+<file>
+git log --pretty=oneline
+</file>
+
+
+=== Voir les differences durant les commits successifs  : ===
+
+
+<file>
+git log -p  # raccourci de "git log --patch"
+</file>
+
+
+----
+
+
+— //[[dantan.jerome@gmail.com|jerome]] 2013/08/14 11:05//
+
+
+\\

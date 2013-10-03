@@ -1,0 +1,189 @@
+{{indexmenu_n>10}}
+
+====== HEADER & NAVIGATION ======
+
+===== HEADER =====
+
+==== Design ====
+  - Connaitre les utilisateurs : les graphismes mettent en valeurs ce que les utilisateurs aiment (argent, nature, ville, ...).
+  - Clean
+  - 3 ou 4 éléments
+
+==== Markup ====
+
+
+<file>
+<header id="main">
+   <a href="#" id="better-beer"></a>
+   <h1 class="texthide"><a href="#" id="logo">Border & Radius Brewhouse</a></h1>
+   <a href="#" id="menu-promo"></a>
+</header>
+</file>
+
+
+ce  qui donne :           {{:techs:web_design:raw_header.png?0x0}}
+
+==== Style ====
+
+=== Ajout des photos : ===
+On y ajoute un effet lorsque la souris passe sur l'image (**avec 1 seule image**):
+
+<file>
+#better-beer {
+   float: left;  /* l'image set à gauche  */                                
+   width: 230px;
+   height: 152px;
+   background: url(../images/better-beer.png) no-repeat;
+   
+   opacity: .65;           /* 1ere partie de l'effet
+}
+
+#better-beer:hover {
+   opacity: 1;             /* 2eme partie de l'effet */ 
+}
+</file>
+\\ 
+=== Le logo ===
+Pour le logo, on ajoute le même effet mais avec une [[techs:css:proprietes#transition|transition]] (durée d'exécution) :
+<file>
+#logo {
+   position: absolute;
+   top: 8px;
+   left: 390px;
+   width: 141px;
+   height: 144px;
+   background: url(../images/logo.png) no-repeat;
+   -webkit-transition: opacity .2s ease-in-out;     /* opacity n'est pas defini => valeur par défaut (=1) */
+   -moz-transition: opacity .2s ease-in-out;
+   -o-transition: opacity .2s ease-in-out;
+   transition: opacity .2s ease-in-out;
+}
+
+#logo:hover {
+   opacity: .70;
+}
+</file>
+
+<note warning>
+Dans cet exemple le logo est au milieu (on le trouve généralement en haut à gauche ( le premier endroit de l'écran vu par un visiteur).
+</note>
+
+===== NAVIGATION =====
+
+==== Design ====
+  - Simple & facile
+
+<note warning>
+Le standard est la **navigation horizontales** pour les menus principaux.
+
+Il faut avoir de **bonnes raisons** pour passer à une navigation horizontale qui **risque de déstabiliser le visiteur** !!
+</note>
+==== Markup ====
+
+
+<file>
+<nav id="primary">
+   <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Food</a></li>
+      <li><a href="#">Beer</a></li>
+      <li><a href="#">Catering</a></li>
+      <li><a href="#">Locations</a></li>
+      <li><a href="#">Contact</a></li>
+   </ul>
+</nav>
+</file>
+
+
+ce qui donne :  {{:techs:web_design:raw_nav.png?400x183}}
+
+
+==== Style ====
+
+=== Changer de police ===
+
+La police choisie se trouve dans le fichier "DroidSans-Bold-webfont.woff". En utilisant le **[[http://www.fontsquirrel.com/tools/webfont-generator | générateur Squirrel]]** on obtient le block de style suivant :
+<file>
+@font-face {
+   font-family: 'DroidSansBold';
+   src: url('fonts/DroidSans-Bold-webfont.eot');
+   src: local('☺'), url('fonts/DroidSans-Bold-webfont.woff')
+   format('woff'), url('fonts/DroidSans-Bold-webfont.ttf')
+   format('truetype'), url('fonts/DroidSans-Boldwebfont.
+   svg#webfontSOhoM6aS') format('svg');
+   font-weight: bold;
+   font-style: normal;
+}
+</file>
+
+et l'utiliser :
+
+<file>
+#primary {
+   width: 100%;
+   height: 28px;
+   background-color: #fafaf6;
+   margin-top: 10px;
+   margin-bottom: 20px;
+   padding-top: 14px;
+
+   /* custom font */
+   font: bold 13px "DroidSansBold", Verdana, sans-serif;     /* Eh Eh, c'est notre police */
+
+   text-transform: uppercase;
+   letter-spacing: 1px;
+}
+</file>
+
+=== Mise à l'horizontale ===
+<file>
+#primary ul li {
+   display: inline;
+   padding-left: 43px;
+}
+</file>
+
+=== Du style pour nos liens ===
+<file>
+#primary ul li {
+   padding: 5px 15px;
+   color: #64645d;
+   
+   /* effet d'ombre sur le texte */
+   text-shadow: 1px 1px 1px #fff;
+   
+   /* bordures arrondies */
+   -webkit-border-radius: 5px;
+   -moz-border-radius: 5px;
+   border-radius: 5px; 
+   
+   /* le tout changeant "smoothly"
+   -webkit-transition: all .3s ease-in-out;
+   -moz-transition: all .3s ease-in-out;
+   -o-transition: all .3s ease-in-out;
+   transition: all .3s ease-in-out;
+}
+</file>
+
+=== effet de rollover sur les liens ===
+<file>
+#primary li a:hover {
+   color: #dc692e;
+   background: #efefe9;
+}
+</file>
+
+<note important>
+Les effets (arrondis, transitions, …) **sont placer dans le styles standards** (li a) même si il n'apparaissent que dans certains cas (li a:hover) !!\\ On a ainsi une **consistance** des effet qui sont **factorisés** dans le styles standard.
+</note>
+
+<note tip>
+Pour appliquer une transition à **toutes les propriétés** définies, on utilise "**all**" :
+<file>
+   -webkit-transition: all .3s ease-in-out;
+   -moz-transition: all .3s ease-in-out;
+   -o-transition: all .3s ease-in-out;
+   transition: all .3s ease-in-out;
+</file>
+</note>

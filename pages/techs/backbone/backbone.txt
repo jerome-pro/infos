@@ -1,0 +1,10 @@
+====== BACKBONE ======
+
+===== Ressources =====
+  * [[http://documentcloud.github.com/backbone/|Backbone Docs]]
+  * [[https://workshops.thoughtbot.com/backbone-js-on-rails|Backbone.js on Rails]]
+  * [[http://recipeswithbackbone.com/|Recipes with Backbone]]
+  * [[http://ricostacruz.com/backbone-patterns/|Backbone Patterns]]
+  * [[http://peepcode.com/products/backbone-js|Peepcode Backbone]]
+  * [[http://anatomyofbackbone.herokuapp.com/|Todo Example App]]
+  * [[https://github.com/codeschool-courses/anatomyofbackbone|Todo Example App Source]]

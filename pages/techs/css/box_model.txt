@@ -1,0 +1,80 @@
+{{indexmenu_n>15}}
+
+====== BOX MODEL ======
+
+
+==== Définition ====
+
+
+Un schéma imaginaire qui décrit chaque élément HTML:
+
+
+{{:techs:css:box_model.png?450x161}}
+
+
+==== Taille d'un élément HTML ====
+
+La taille d'un élément HTML est la somme :
+
+  * du contenu
+  * du padding
+  * des bordures
+
+__exemple :__
+
+<file>
+.xyz {
+    border: 5px solid #fff;
+    padding-left: 10px;
+    padding-right: 5px;
+    width: 100px;
+}
+</file>
+
+à pour taille :
+
+<file>
+     100px (contenu)
+  +   15px (padding)
+  +   10px (bordures)
+  _______________________
+
+   125 px (taille totale)
+</file>
+
+==== Overflow ====
+<file>
+overflow: visible / auto / hidden / scroll
+</file>
+
+<note tip>
+On peut agir sur chaque axe distinctement  : **overflow-x** & **overflow-y**.
+</note>
+
+
+
+[[http://www.w3schools.com/cssref/pr_pos_overflow.asp|voir W3School]]
+
+
+**__visible__**: la **valeur par défaut**, qui permet au contenu de 's'**étendre****au-delà des limites du conteneur**.
+
+
+{{:techs:css:overflow_visible.png?350x214}}
+
+
+**__auto__**: ajoute une **barre de défilement si nécessaire** (lorsque le contenu déborde du container).
+
+
+{{:techs:css:overflow_auto.png?350x205}}
+
+
+**__hidden__**: **masque** la partie du contenu **dépassant le conteneur**.
+
+
+{{:techs:css:overflow_hidden.png?350x200}}
+
+
+**__scroll__**-  ajoute une **barre de défilement systématiquement**, même si ça n'est pas nécessaire.
+
+
+{{:techs:css:overflow_scroll.png?350x197}}

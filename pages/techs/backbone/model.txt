@@ -1,0 +1,168 @@
+{{indexmenu_n>1}}
+
+====== Model ======
+===== classe =====
+==== Définir une classe de modèle ====
+ 
+<file>
+var Appointment = Backbone.Model.extend({});
+</file>
+
+<note important>
+"Appointment" est une **fonction**!!
+ 
+Il s'agit même d'un **constructeur**, à utiliser avec "**new**".
+</note>
+
+==== Définir des valeurs par défaut des modèles ====
+Il suffit de spécifier un **objet "défaut"** en renseignant les valeurs par défaut des attributs visés :
+<file>
+var Appointment = Backbone.Model.extend({
+   defaults: {
+      title: 'Checkup',
+      date: new Date()
+   }
+});
+</file>
+<note warning>
+**BUG FIX :**\\ 
+Le code ci-dessus **n'évalue** la date qu'**à la création de la classe** du modèle.
+Nous voulons une évaluation à chaque **création d'INSTANCE** du modèle, Il faut donc que "défaut" soit **une fonction** et non un objet : 
+<file>
+   defaults: function() {
+    return {
+      title: 'Checkup',
+      date: new Date()
+    }
+  }
+</file>
+</note>
+
+==== Définir une URL racine ====
+Il est possible (et préférable) de définir une URL racine (root URL) lors de la création de la classe de modèle, grâce à la propriété "**urlRoot**" :
+<file>
+   var Appointment = Backbone.Model.extend({urlRoot: '/appointments'});
+</file> 
+
+Définir une URL racine permet de communiquer avec le serveur sans avoir à répéter le code spécifiant l'URL de destination.
+
+===== instance =====
+
+<file>
+var appointment = new Appointment(
+  {title: 'toto'}
+);
+</file>
+<note important>
+le paramètre du constructeur est un **objet**!!
+</note>
+
+===== Getter & Setter =====
+On accède aux données du modèle via des getter :
+<file>
+appointment.get('title');
+</file>
+
+On positionne des données dans modèle via des setter (prenant un **objet** en **paramètre**):
+<file>
+appointment.set({title: 'Mon titre'});
+</file>
+
+
+===== JSON =====
+la méthode "toJSON" permet d'obtenir la représentation JSON d'un modèle :
+
+<file>
+appointment.toJSON();
+</file>
+
+
+===== Echange avec le serveur =====
+==== fetch ====
+La méthode "fetch" permet de **récupérer des données** sur le serveur : 
+<file>
+var Appointment = Backbone.Model.extend({urlRoot: '/appointments'});
+var appointment = new Appointment({id:1});
+
+appointment.fetch();  /* GET /appointments/1  */
+</file>
+
+Ici, on récupére les données sur le serveur de l'entité Appointement avec l'identifiant 1.
+<note tip>
+la requête HTTP générée par le code 
+<file>appointment.fetch()</file> est <file>GET /appointments/1</file>
+</note>
+
+==== save ====
+La méthode "save" permet d'**envoyer des données** sur le serveur.
+
+=== Modification d'un entité ===
+<file>
+var Appointment = Backbone.Model.extend({urlRoot: '/appointments'});
+var appointment = new Appointment({id:1});
+
+appointment.set({cancelled: true});
+appointment.save();  /* PUT /appointments/1  (+ paramètres JSON) */
+</file>
+
+Ici, on modifie la valeur de la propriété "cancelled" de l'entité Appointement avec l'identifiant 1 et on pousse cette  modification sur le serveur.
+<note tip>
+la requête HTTP générée par le code
+<file>appointment.save()</file> est <file>PUT /appointments/1   +  paramètres JSON</file>
+</note>
+
+=== Création d'un entité ===
+<file>
+var Appointment = Backbone.Model.extend({urlRoot: '/appointments'});
+
+var appointment = new Appointment();
+appointment.set({cancelled: true});
+appointment.save();  /* POST /appointments/1  (+ paramètres JSON) */
+</file>
+
+Ici, on créer un nouvel entité Appointement.
+<note tip>
+la requête HTTP générée par le code
+<file>appointment.save()</file> est <file>POST /appointments   +  paramètres JSON</file>
+**Pas d'identifiant** - il est créé par le serveur.
+</note>
+
+==== destroy ====
+La méthode "destroy" permet de **supprimer un entité** sur le serveur.
+<file>
+var appointment = new Appointment({id: 2});
+appointment.destroy();  /*DELETE /todos/2 */
+</file>
+<note tip>
+la requête HTTP générée par le code
+<file>appointment.destroy()</file> est <file>DELETE /todos/2</file>
+</note>
+===== Evénement (event) =====
+Les événements permettent d'être notifié lors d'une modification du modèle.
+<file>model.on(<event>, <method>);</file> permet d'**ajouter un listener** d'événement à un modèle.
+
+<file>
+var appointment = new Appointment({id: 1});
+appointment.on('change', function(){
+  alert('quelque chose a changé')
+});
+</file>
+
+L'événement lancé lors de la modification d'un modèle est **change** :
+|change| Quand n'importe quel attribut est modifié|
+|change:<attr>| Quand l'attribut spécifié <attr> est modifié|
+
+En **filtrant** les changement sur l'attribut **"cancelled" uniquement**:
+<file>
+var appointment = new Appointment({id: 1});
+appointment.on('change:cancelled', function(){
+  alert('cancelled a changé de valeur)
+});
+</file>
+===== Evénements fournis par défaut =====
+|destroy| Quand un modèle est détruit|
+|sync| Chaque fois que la synchronisation réussie|
+|error| Si un modèle échoue lors de la validation ou de la sauvegarde |
+|all| Sur tout les événement possibles (change/destroy/sync/error)|
+
+

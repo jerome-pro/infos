@@ -1,0 +1,93 @@
+{{indexmenu_n>5}}
+
+
+====== MANIPULER LE DOM ======
+
+
+===== Ajouter un élément =====
+
+
+Ajouter un élément dans le DOM à une place choisie :
+
+
+| <file>
+
+.append(<element>)
+</file> |**DANS** l'élément sélectionné, **APRES** le contenu existant |
+| <file>
+
+.prepend(<element>)
+</file> |**DANS** l'élément sélectionné, **AVANT** le contenu existant |
+| <file>
+
+.after(<element>)
+</file> |**EN DEHORS** de l'élément sélectionné, **APRES** lui |
+| <file>
+
+.before(<element>)
+</file> |**EN DEHORS** de l'élément sélectionné, **AVANT** lui |
+
+
+**__Exemple :__ ** 
+
+
+__HTML :__ 
+<file>
+<div>Lorem ipsum dolor sit amet consectetur adipiscing elitr sed diam nonumy tempe goreng.</div>
+</file>
+
+
+__Javascript/jQuery:__ 
+<file>
+$('div')
+    .append('<span>1. Append</span>')
+    .prepend('<span>2. Prepend</span>')
+    .before('<span>3. Before</span>')
+    .after('<span>4. After</span>');
+</file>
+
+
+__Resultat:__ 
+
+
+{{:techs:jquery:append_prepenf_before_after.png?424x214}}
+
+
+===== Réagir aux événements =====
+==== direct ====
+
+
+Avec jQuery, l'implémentation d'un **event handler** se fait grâce à la méthode **.on** :
+<file>
+.on(<event>, <event handler>)
+</file>
+
+
+Exemple:
+
+
+Implémentation d'un event handler pour les click button :
+
+
+{{:techs:jquery:click_button_event_handler.png?517x202}}
+
+==== delegation ====
+<file>
+.on(<event>, selector, <event handler>)
+</file>
+
+exemple:
+<file>
+$(".tour").on("click", "button", function(){
+</file>
+
+On **sélectionne un container ancêtre** de l'élément voulu, puis on **filtre cet ancêtre** (objet jQuery) avec un sélecteur **pour cibler les éléments** auquel on désire ajouter un handler.
+
+<note tip>
+Avec la délégation, lorsque qu'on ajoute un élément dans un container, si il est du type du sélecteur, il est **immédiatement pris en compte**.
+
+Avec le mode direct, il faut ajouter et retirer l'handler à chaque changement!!
+
+voir ce [[http://stackoverflow.com/questions/8110934/direct-vs-delegated-jquery-on | post stackoverflow]]
+ 
+</note>

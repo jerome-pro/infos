@@ -1,0 +1,108 @@
+====== STREAM ======
+===== STREAM en lecture (READABLE) =====
+
+==== Création ====
+<file>
+var fs = require('fs');
+
+var index = fs.createReadStream("index.html");
+</file>
+
+==== Suspendre la lecture ====
+<file>
+var fs = require('fs');
+var index = fs.createReadStream("index.html");
+
+index.pause();
+</file>
+
+==== Reprendre la lecture ====
+<file>
+var fs = require('fs');
+var index = fs.createReadStream("index.html");
+
+index.resume();
+</file>
+
+==== Pipe avec les streams en écriture ====
+Syntaxe: **readable.pipe(destination, [options])**
+<file>
+var fs = require('fs');
+var file = fs.createReadStream('index.html');
+
+//copy file content in the console
+file.pipe(process.stdout);
+</file>
+
+<note tip>
+__Une option courante:__
+<file>
+{ end: false }
+</file>
+qui permet de **ne pas fermer** le stream destination lorsque le stream source émet l'événement "end".
+
+</note>
+
+<file>
+var fs = require('fs');
+var file = fs.createReadStream('index.html');
+
+//copy file content in the console
+file.pipe(process.stdout, { end: false });
+
+// due to : "{ end: false }" option
+file.on("end", function() {
+  console.log('--File Complete--');
+});
+</file>
+
+
+===== STREAM en écriture (WRITEABLE) =====
+==== Création d'un stream en écriture (WRITEABLE) ====
+<file>
+var fs = require('fs');
+
+var newFile = fs.createWriteStream("myNewFile.txt");
+</file>
+
+
+==== Ecrire ====
+
+<file>
+var fs = require('fs');
+var newFile = fs.createWriteStream("icon-new.png");
+
+file.on('data', function(chunk) {
+  var buffer_good = newFile.write(chunk);
+  ...
+});
+</file>
+<note important>
+La méthode "**write**" renvoie "**true**" si le buffet du stream **n'est pas plein**.
+</note>
+<note tip>
+Un stream en écriture émet l'événement "**drain**" pour indiquer que** son buffer est vide** (et peut donc reprendre l'écriture).
+<file>
+var fs = require('fs');
+var newFile = fs.createWriteStream("icon-new.png");
+...
+
+newFile.on('drain', function(){
+  ...
+});
+
+</file>
+</note>
+
+
+
+
+
+<file>
+</file>
+
+<file>
+</file>
+
+<file>
+</file>

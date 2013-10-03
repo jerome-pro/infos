@@ -1,0 +1,91 @@
+====== jQuery ======
+
+
+===== JQuery pour "standardiser" l'API du DOM =====
+
+
+Le browser organise le code HTML qu'il reçoit dans un arbre : le DOM (Document Object Model).
+
+
+Pour interagir avec le DOM, le browser utilise le **javaScript**. Malheureusement, chaque browser (I.E, Firefox, chrome, …) ne propose pas exactement la même API pour manipuler le DOM.
+
+
+jQuery permet d'écrire du code **compatible avec tout les navigateurs** :
+
+
+{{:techs:jquery:jquery_javascript_unification.png?683x357}}
+
+
+===== jQuery pour quoi faire ? =====
+
+
+|**TROUVER**  |Trouver des éléments dans un document HTML |
+|**CHANGER**  |Changer du contenu HTML |
+|**ECOUTER**  |Ecouter les événements déclenchés par l'utilisateur |
+|**ANIMER**  |Animer le contenu de la page |
+|**DISCUTER**  |Discuter via le réseau pour récupérer du contenu nouveau |
+
+
+===== Utiliser jQuery =====
+
+
+<file>
+<script src="jquery.min.js"></script>
+</file>
+
+
+===== Attendre la fin du chargement du document =====
+
+
+<file>
+$(document).ready(function(){
+
+    // placer ici le code à executer
+   
+});
+</file>
+===== Les objets jQuery =====
+Il s'avère que de travailler directement avec les éléments DOM peut être difficile. 
+
+Les **objets jQuery définissent de nombreuses méthodes** pour faciliter la vie des développeurs.
+
+
+Les objets jQuery sont fourni par la méthode : 
+
+<file>
+jQuery(...)   ou   $(...) 
+</file>
+\\
+
+On manipule donc des objets jQuery lorsqu'on utilise :
+  * les **[[techs:jquery:selector|sélecteurs]]** :
+<file>
+var dest = $("#destinations")  # 'dest' est un objet jQuery
+</file>
+
+
+ * le **constructeur $( )**:
+<file>
+var price = $('<p>€399.99</p>');  # 'price' est un objet jQuery
+</file>
+
+<note tip>
+**$(this)** : conversion de l'élément DOM 'this' en objet jQuery
+</note>
+
+<note tip>
+Un objet jQuery correspond à un **tableau** dont **chaque élément correspond au critère du sélecteur**.
+
+<file>
+$(".myClass").length # combien d'éléments sont "attrapés" par le sélecteur ".myClass"
+</file>
+
+<file>
+$("#myDiv")[0] == document.getElementById("myDiv");  # byId => 1 seul élément possible
+</file>
+
+<file>
+$(this)[0] == this
+</file>
+
+</note>

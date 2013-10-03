@@ -1,0 +1,96 @@
+{{indexmenu_n>30}}
+
+====== IMAGES & SPRITES ======
+===== IMAGES =====
+
+==== Contenu ou layout ====
+
+voir "[[techs:css:layout#image|best practises]]" de "layout"
+
+==== Image Replacement ====
+**Pourquoi** : [[http://en.wikipedia.org/wiki/Fahrner_Image_Replacement | voir ici]]
+
+**Comment** : 
+
+Un classique mais **deprecated** pour des raison de **performance** (le navigateur dessine vraiment un conteneur de 9999 pixels !!):
+<file>
+<h1>This Text is Replaced</h1>
+
+<style>
+h1
+{
+   background: url("myimage") 0 0 no-repeat;
+   text-indent: -9999px;
+}
+</style>
+</file>
+
+Il existe une nouvelle méthode proposée par [[http://scottkellum.com/ | Scott Kellum]] expliquée [[ http://www.zeldman.com/2012/03/01/replacing-the-9999px-hack-new-image-replacement/| ici]]:
+<file>
+<h1 class="hide-text">This Text is Replaced</h1>
+
+<style>
+.hide-text {
+   text-indent: 100%;
+   white-space: nowrap;
+   overflow: hidden;
+}
+</style>
+</file>
+
+<note warning> pour la méthode de Scott Kellum :
+
+Pas de retour - pas essayé - A TESTER</note>
+===== SPRITES =====
+
+
+Pour des raisons de performances (chargement des images à travers le réseaux), il est préférable d'utiliser les sprites (ensemble d'images/icônes regroupées dans un seul fichier) et de n'afficher que la partie souhaitée.
+
+
+Le site **[[http://www.spritecow.com/|sprite cow]]** permet de génerer le code CSS à ajouter pour cibler correctement une image d'un sprinte sheet.
+
+
+__pour une image simple :__ 
+<file>
+.sprite {
+   background: url('imgs/baddies01.png') no-repeat -194px -4px;
+   width: 27px;
+   height: 43px;
+}
+
+avec :
+  *
+ -194px : décalage sur **l'axe des X** (du sprite sheet)
+  * -4px : décalage sur **l'axe des Y** (du sprite sheet)
+</file>
+
+
+__pour un bouton avec 'focus' et 'hover':__ 
+
+
+soit l'image logo2.png suivante:
+
+
+{{:techs:css:logo2.png?250x150}}
+
+
+On utilisera le code suivant (basé sur la propriété  avec la propriétés CSS **background-position)**pour créer les effets voulus:
+<file>
+<h1><a class="logo" href="#">Sven's Snowshoe Emporium</a></h1>
+
+<style>
+.logo {
+  background: url(logo2.png);
+  display: block;
+  height: 75px;
+  text-indent: -9999px;
+  width: 250px;
+}
+.logo:hover, .logo:focus {
+  background-position: 0 -75px;
+}
+</style>
+</file>
+
+
+<note tip> L'image affichée par défaut est à la position : top & left (i.e : 0px 0px) </note>

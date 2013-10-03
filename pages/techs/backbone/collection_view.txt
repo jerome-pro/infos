@@ -1,0 +1,85 @@
+{{indexmenu_n>15}}
+
+
+====== COLLECTION VIEW ======
+
+===== Creation =====
+une vue de collection se définit comme une vue de modèle :
+<file>
+var AppointmentListView = Backbone.View.extend({});
+</file>
+
+**MAIS** on défini la **collection** et non le modèle de cette collection lors de l'instanciation:
+<file>
+var appointmentsView = new AppointmentListView({
+  collection: appointments
+});
+</file>
+
+===== Patterns =====
+==== Ajout de modèles dans la collection ====
+
+<file>
+var CollectionView = Backbone.View.extend({
+ 
+   /* define listeners which maintains coherence with the DOM */
+   initialize: function(){
+      this.collection.on('add', this.addOne, this);
+      this.collection.on('reset', this.addAll, this);
+   },
+   
+   /* define one model addition */
+   addOne: function(myModel){
+      var modelView = new ModelView({model: myModel});
+      modelView.render();
+      this.$el.append(todoView.el);
+   },
+   
+   /* define behavior when "reset" or "fetch" are called */
+   addAll: function(){
+      this.collection.forEach(this.addOne, this);
+   },
+
+   /* redraw everything */
+   render: function(){
+      this.addAll();
+   }
+}
+</file>
+
+==== Suppression de modèles dans la collection ====
+__Dans l'implémentation de la **collection (de modèle)** :__
+  * Ajouter un listener charger de détecter la suppression d'un modèle de la collection.
+  * Le listener appelle ensuite une fonction qui envoie un événement personnalisé.
+
+<file>
+var AppointmentList = Backbone.Collection.extend({
+  model: Appointment,
+  
+  /* listener for 'remove' event */
+  initialize: function(){
+    this.on('remove', this.hideModel);
+  },
+                                                 
+  /* throw custom event ('hide')
+  hideModel: function(model){
+    model.trigger('hide');
+  }
+});
+</file>
+
+\\ 
+__Dans l'implémentation de la **vue du modèle**:__
+  * ajouter un listener du custom évent.
+  * implementer la methode remove (qui supprime l'élément du DOM)
+<file>
+var AppointmentView = Backbone.View.extend({
+  
+  initialize: function(){
+     this.model.on('hide', this.remove, this);  /* listener on custom event */
+  },
+  remove: function(){
+    this.$el.remove();    /* remove element from the DOM  */
+  }
+});
+</file>

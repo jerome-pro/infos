@@ -1,0 +1,118 @@
+{{indexmenu_n>3}}
+
+====== TRAVERSING ======
+
+
+===== Pourquoi utiliser jQuery traversing =====
+
+
+Pourquoi utiliser jQuery traversing à la place des sélecteurs :
+
+  - pour des raison de standardisation : dans "$("#vacations li:last")" par exemple, ":last" ne fait pas partie de l'API standard des sélecteurs (implémentées par les browsers).
+  - pour des raison de performances : [[http://jsperf.com/andrey-s-jquery-traversal | voir tests]] 
+
+tiré de ce post [[http://stackoverflow.com/questions/15216838/is-jquery-traversal-preferred-over-selectors ]]
+
+
+===== Traversing syntaxe =====
+<file>
+$('<basic selector>').method([<basic selector>])
+</file>
+
+__**exemples :**__
+| **Traversing** |** Selecteurs**|
+| $("#destinations")**.find("li")**; | $("#destinations li");|
+| $("li")**.first()**; | $("li:first");|
+| $("li").**last()**; | $("li:last");|
+
+<note important>
+Le "traversing" s'opère en **2 temps** :
+  - utilisation d'un **[[techs:jquery:selector#basics_selectors | sélecteur basique]]**
+  - utilisation d'une **[[http://api.jquery.com/category/traversing/ | méthode de traversing]]**
+</note>
+
+===== Les différentes méthodes de traversing =====
+Le "traversing" s'opère en 2 temps :
+  - sélection
+  - action sur la sélection
+
+les actions possibles sur l'objet jQuery récupéré par la sélection sont: 
+  * filtrer
+  * rechercher vers le haut du DOM (walking up)
+  * rechercher vers le bas du DOM (walking down)
+  * rechercher au même niveau du DOM (sibling)
+
+==== Filter ====
+
+Consiste à filtrer les éléments de l'objet jQuery récupéré afin de ne conserver que que les éléments souhaité.
+
+On trouve les méthodes : 
+
+<file>.eq() .filter() .first() .has() .is() .last() .map() .not() .slice()</file>
+
+voir doc [[http://api.jquery.com/category/traversing/filtering/ | API jQuery]].
+
+voir doc [[http://www.w3schools.com/jquery/jquery_traversing_filtering.asp | w3school]]
+==== walking up ====
+__walking up__ : rechercher parmi les **ancètres**.
+
+Les principales méthodes :
+<code>.closest() .parent() .parents() .parentsUntil()</code>
+
+
+exemple :
+<code>$("li").parent();</code>
+
+
+voir doc [[http://www.w3schools.com/jquery/jquery_traversing_ancestors.asp | w3school]]
+==== walking down ====
+
+__walking down__ : rechercher parmi les **descendants**
+
+Les principales méthodes sont :
+<code>.children() . find()</code>
+
+
+exemple : 
+<code>$("li").children();</code>
+<code>$("li").find('button');</code>
+
+
+voir doc [[http://www.w3schools.com/jquery/jquery_traversing_descendants.asp | w3school]]
+
+==== sibling ====
+
+__sibling__ : rechercher parmi les **frères** (même niveau dans le DOM)
+
+Les principales méthodes sont :
+<code>.siblings() .next() .nextAll() .nextUntil() .prev() .prevAll() .prevUntil()</code>
+
+
+exemple : 
+<code>$("li").siblings();
+
+$("li").siblings('p');
+</code>
+
+voir doc [[http://www.w3schools.com/jquery/jquery_traversing_siblings.asp | w3school]]
+
+
+===== Astuces =====
+
+
+==== closest() vs parent() ====
+
+  * **closest()** sélectionne **le premier éléments** parent (en remontant le DOM - traversing up) de l'élément sélectionné, correspondant au critère de sélection :
+    <file>
+    var closes = $(this).closest('.vacation')   #l'objet jQuery 'closes' contient 0 ou 1 éléments.
+    </file>
+
+
+  * **parent ()** sélectionne **tous les éléments** qui sont parents de l'élément sélectionné dans le DOM.
+    <file>
+    var parents = $(this).parents('.vacation')   #l'objet jQuery 'parents' contient 0, 1 ou plusieurs éléments.
+    </file>
+
+===== Ressources  =====
+
+[[http://www.w3schools.com/jquery/jquery_traversing.asp | w3school]] 

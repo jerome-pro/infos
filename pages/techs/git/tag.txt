@@ -1,0 +1,30 @@
+{{indexmenu_n>5}}
+====== TAG ======
+
+===== Lister les tags =====
+|<file>git tag</file> | tous les tags |
+
+===== Se placer sur un tag =====
+<file>
+git checkout <tag_name> 
+
+ex:
+git checkout v0.02 
+</file>
+
+
+===== Créer un tag =====
+<file>
+git tag -a <tag_name> -m <comment> 
+
+ex:
+git tag -a v0.02 -m "Version 0.0.2" 
+</file>
+
+===== Publier un tag dans dépôt distant =====
+<file>
+git push --tags
+</file>
+
+
+

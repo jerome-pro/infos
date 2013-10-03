@@ -1,0 +1,45 @@
+{{indexmenu_n>2}}
+
+====== PSEUDO CLASSES & PSEUDO ELEMENTS ======
+
+===== PSEUDO CLASSES =====
+
+Ce sont les sélecteurs qui commencent par "** : **"
+
+==== Sélecteurs utiles ====
+
+__pour les liens :__
+<file>
+:hover / :focus / :active / :visited
+</file>
+
+__en fonction de la position :__
+<file>
+:first-child / :last-child / :only-child
+
+:nth-child() / :nth-of-type()
+</file>
+
+
+==== Ressources ====
+
+[[http://css-tricks.com/pseudo-class-selectors/|Meet the Pseudo Class Selectors]]
+
+[[https://developer.mozilla.org/en-US/docs/Web/CSS/Reference?redirectlocale=en-US&redirectslug=CSS%2FCSS_Reference|La bible de chez Mozilla]]
+
+===== PSEUDO ELEMENTS =====
+==== Sélecteurs utiles ====
+
+
+<file>
+:before / :after  (souvent utilisés avec "content")
+</file>
+
+<file>
+:first-letter / :first-line
+</file>
+
+
+==== Ressources ====
+
+[[http://css-tricks.com/pseudo-element-roundup/|CSS-tricky]] - Attention, tout les exemples ne sont pas assimilables pour un débutant (comme moi) !!

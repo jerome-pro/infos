@@ -1,0 +1,282 @@
+{{indexmenu_n>2}}
+
+
+===== STAGING =====
+
+
+==== Les 3 zones de git ====
+
+
+{{:techs:git:git_stage_track_commit.png?0x0}}
+
+
+__**working directory**__ : Les fichiers sont en cours de modification (MODIFIED, NEW, UNTRACKED).
+
+__**staging area**__ : Les fichiers sont "taggués" pour être pris en compte lors du prochain commit (STAGED). Le fichier est committé dans l'état des modification au moment du "git add". 
+
+__**Repository**__ : Les fichiers sont en sécurité dans la base locale de GIT (COMMITTED). 
+
+
+
+<note tip>
+La staging area s'appelle aussi **l'index**.
+
+
+A partir du moment où un fichier est dans l'index, il est dit "**tracked**".</note>
+
+
+==== Cycle de vie d'un fichier dans GIT ====
+
+
+{{:techs:git:git_file_state.png?378x287}}
+
+<note important>Il s'agit du cycle de vie d'un fichier "**TRACKED**"</note>
+
+<note important>Un fichier peut être dans l'état "**UNTRACKED**" si il n'a jamais été ajouté dans l'index (git add) ou s'il en a été retiré (git rm )</note>
+
+
+==== Ajouter un fichier dans la "staging area" ====
+
+
+<file>
+git add newFile.txt
+</file>
+
+
+<note tip>
+
+
+|git add file1.txt file2.txt |ajoute une liste de fichiers |
+|git add –-all |ajoute tous les fichier |
+|git add *.txt |ajoute les fichiers ".txt" du répertoire courant |
+|git add "*.txt" |ajoute les fichiers ".txt" de tout le projet |
+|git add docs/*.txt |ajoute les fichiers ".txt" du répertoire "docs" |
+|git add docs/ |ajoute tous les fichiers du répertoire "docs" |
+
+</note>
+
+
+==== Supprimer un fichier de l'index (staging area) ====
+
+
+<file>
+git rm --cached <file_name>
+
+ex: 
+git rm --cached readme.txt
+</file>
+
+
+Le fichier reste dans le file system, il devient "**untracked**".
+
+
+Si on omet l'option "''--cached''", le fichier est aussi **supprimer du file system** : <note warning>
+<file>
+git rm  readme.txt
+</file>
+
+
+</note>
+
+==== Visualiser les différences ====
+
+
+=== unstaged ===
+
+
+<file>
+git diff
+</file>
+
+
+=== staged ===
+
+
+<file>
+git diff --staged
+</file>
+
+
+==== Revenir d'un état "staged" à un état "unstaged" ====
+
+
+Cette opération s'appelle : unstage
+
+
+<file>
+git reset HEAD filename.txt
+</file>
+
+
+HEAD est un pointeur sur le dernier commit
+
+
+==== Supprimer les changements ====
+
+
+<file>
+git checkout -- filename.txt
+</file>
+
+
+Git ne verra plus de changements  <note warning> - -   : pour éviter de changer de branche</note>
+==== Staging et commiter en même temps ====
+
+
+<file>
+git commit -a -m "Modify file"
+</file>
+
+
+<note warning> Ne prends en compte que les fichiers déjà connus par GIT (tracked files)!
+
+
+Il faut utiliser git add pour les nouveaux fichiers. </note>
+===== COMMIT =====
+
+
+==== Annuler un commit ====
+
+
+<note important>A ne pas faire après avoir publier les modification sur un remote </note>
+=== soft ===
+
+
+<file>
+git reset --soft HEAD^"
+</file>
+
+
+Les fichiers se retrouvent dans la "staging area"
+
+
+=== hard ===
+
+
+<file>
+git reset --hard HEAD^"
+</file>
+
+
+retour au précédent commit : toutes les modifications sont annulées.
+
+
+<note tip> le nombre de ^ indique le nombre de commit à annuler:
+<file>
+git reset --hard HEAD^^
+</file>
+
+
+annule les 2 derniers commit </note>
+
+==== Se positionner sur un commit particulier ====
+Il s'agit de positionner le pointeur HEAD sur un commit particulier.
+
+__Remarque__ : la commande [[techs:git:reflog|reflog]] permet de visualiser l'historique de l'évolution de  la HEAD.
+
+<file>
+git reset --hard <sha1_commit>
+
+ex:
+git reset --hard 514e7b # position HEAD sur le commit 514e7b
+
+</file>
+==== Modifier le dernier commit ====
+
+
+<note important>A ne pas faire après avoir publier les modification sur un remote </note>
+<file>
+git commit --amend -m "new comment"
+</file>
+
+
+===== REMOTE =====
+
+
+==== Ajouter un dépôt distant (Remote repository) ====
+
+
+<file>
+git remote add origin https://github.com/Gregg/git-real.git
+</file>
+
+
+<note tip> Ajouter d'autres remotes:
+<file>
+git remote add <name> <address>
+</file>
+
+
+exemple:
+
+
+<file>
+git remote add production https://github.com/prod/git-real.git
+</file>
+
+
+</note>
+==== Lister les dépôts distants ====
+
+
+<file>
+git remote -v
+</file>
+
+
+==== Supprimer un dépôt distant (Remote repository) ====
+
+
+<file>
+git remote rm <name>
+</file>
+
+
+==== Publier dans un dépôt distant (push) ====
+
+
+<file>
+git push -u origin master
+</file>
+
+
+<note tip> -u : indique la destination et la branche par défaut.
+
+
+Il suffit ensuite de taper :
+
+
+<file>
+git push
+</file>
+
+
+</note>
+==== Récupérer dans le dépôt distant (push) ====
+
+
+<file>
+git pull
+</file>
+
+
+<note warning> En réalité, git pull récupère le contenu du repo distant **et merge instantanément** dans la branche active.
+
+
+Pour récupérer sans merder il faut utiliser :
+
+
+<file>
+git fetch
+</file>
+
+
+</note>
+==== Information sur un dépot distant ====
+
+
+<file>
+git remote show <remote_repo_name>
+
+ex : git remote show origin
+</file>

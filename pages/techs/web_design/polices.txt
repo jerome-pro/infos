@@ -1,0 +1,260 @@
+{{indexmenu_n>1}}
+
+====== POLICES DE CARACTERES ======
+<note tip>
+
+__**Gestion des polices avec CSS :**__
+
+voir **[[techs:css:propriétés | ici]]** - propriété "**@font-face**".
+</note>
+===== Etablir un Guide de style =====
+
+
+Le guide de style (style Guide) **définit les polices utilisées à travers tout le site**.
+
+
+Par exemple, pour un blog ou un site d'information, on pourrait avoir le guide de style suivant :
+
+
+{{:techs:web_design:style_guide.png?555x319}}
+
+
+===== Familles de polices (typefaces) =====
+
+==== Sherifs ====
+
+
+[[http://en.wikipedia.org/wiki/Serif|sherif]]= [[http://fr.wikipedia.org/wiki/Serif|empattement]].
+
+
+Il s'agit donc de polices avec empattements (en rouge):
+
+
+{{:techs:web_design:sherif.png}}
+
+
+----
+
+
+=== Humanist ===
+
+
+Appelé parfois "**Old Style**" ou "**elzévirien**". 
+
+|**Classiques & traditionnelles**|
+
+Elles sont adaptées pour : **le journalisme, l'histoire**.
+
+
+{{:techs:web_design:sherif_humanist.png}}
+
+
+[[https://typekit.com/lists/humanist-serifs?utm_source=typekit-blog&utm_medium=blog&utm_content=blog120606&utm_campaign=new-features|infos typekit]]
+
+
+----
+
+
+=== Transitional ===
+
+
+|**fortes, très élégantes, dynamiques** |
+
+Elles sont adaptées pour : **le juridique, l'académique**.
+
+
+{{:techs:web_design:sherif_transitional.png}}
+
+
+----
+
+
+=== Modern ===
+
+
+|**structurées, claires, élégantes** |
+
+
+Elles sont adaptées pour : **l'art, la culture**.
+
+
+{{:techs:web_design:sherif_modern.png}}
+
+
+----
+
+=== Egyptian ===
+
+
+|**autoritaires, mais amicales** |
+
+
+Elles sont adaptées pour : **le marketing, les promos**.
+
+
+{{:techs:web_design:sherif_egyptian.png}}
+
+
+
+----
+
+==== Sans-sherifs ====
+Il s'agit de polices sans empattements:
+
+{{:techs:web_design:sans-sherif.png?0x0}}
+
+----
+
+
+=== Humanist ===
+
+|**Entre perfection et imperfection**|
+
+Elles sont adaptées pour : **document gouvernemental, l'éducation**.
+
+
+{{:techs:web_design:sans-sherif_humanist.png}}
+
+
+[[https://typekit.com/lists/humanist-serifs?utm_source=typekit-blog&utm_medium=blog&utm_content=blog120606&utm_campaign=new-features|infos typekit]]
+
+
+----
+
+
+=== Transitional ===
+
+|**Sans prétention, modernes** |
+
+Elles sont adaptées pour : **la technologie, le transport**.
+
+
+{{:techs:web_design:sans-sherif_transitional.png}}
+
+
+----
+
+
+=== Geometric ===
+
+|**Stricts, objectives et universelles** |
+
+
+Elles sont adaptées pour : **la science, l'architecture**.
+
+
+{{:techs:web_design:sans-sherif_geometric.png}}
+
+
+----
+
+====Script====
+
+{{:techs:web_design:script.png?0x0}}
+
+<note tip>
+Elles simulent l'écriture à la main - elles **ajoutent une touche humaine** aux documents.
+</note>
+
+<note warning>
+Elles ne doivent **jamais être utilisées pour le corps de texte**, car elles rendent alors la lecture (beaucoup) plus difficile.
+</note>
+
+<note warning>
+**Comic Sans** est une police **script !!**  (ne pas l'utiliser dans le corps de texte).
+</note>
+===== Mélanger les polices =====
+<note tip>
+L'utilisation d'une **police shérif pour le titre** et **sans serif pour le corps de texte** (et
+vice versa) est la façon **la plus simple de mélanger les polices**.
+</note>
+
+<note warning>
+**Ne pas mélanger des polices de la même classe: ** 
+
+  * sherif / sherif
+  * sans-sherif / sans-sherif
+
+
+__par exemple :__
+|Agora (Slab **Sherif**) / Epic (Humanist **Sherif**)|
+</note>
+
+<note warning>
+**Ne pas mélanger des polices du même type.**
+
+
+__par exemple :__
+|Garamond (**Humanist Sherif**) / Epic (**Humanist Sherif**)|
+</note>
+
+<note tip>
+Lorqu'on mélanges des polices, il faut soit :
+  * qu'elles est **un point commun** (apparence du trait, auteur de la police, …).
+  * qu'elles soit **très différentes l'une de l'autre**.
+
+</note>
+===== Taille et espacement des caractères =====
+==== Taille ====
+
+|  **Style**  |  **Tailles recommandées**  | ** taille par défaut**  |
+|  Corps de texte  |  **16 - 26px**  |  16px  |
+|  Titre  |  **200 - 300%** du corps de texte  |   |
+|  Sous-titre  |  **150%** du corps de texte  |    |
+|  Navigation  |  **100%** du corps de texte  |  16px  |
+|  Références  |  **75%** inférieur au corp de texte  |  12 - 14px   |
+
+<note warning>
+Ne pas hésitez à s'éloigner un peu des valeurs proposées pour **éviter les [[techs:web_design:polices#taille_des_lignes| veuves et les orphelins]]** - surtout dans les titres !!
+</note>
+==== Espacement ====
+<note tip>
+L'espacement **entre les lignes** du corps de texte doit être de : 
+
+                  120 - 150% du corps de texte
+                  
+Par **défaut**, on choisira **150%**. Ce qui se traduira par la propriété CSS suivante :  
+                 line-height: 1.5;  /* 150% */               
+</note>
+
+
+
+===== Taille des lignes =====
+
+La **taille des lignes** se mesure en **CPL** (Caractères par ligne).
+
+<note tip>
+La **taille la plus agréable** d'une ligne est de **50-70 caractères par ligne** (espaces compris).  
+</note>
+
+La taille d'une ligne dépend donc de la **taille de la police du corps de texte**.
+
+Dans le cas de **responsive design**, il faudra donc **réajuster la taille de la police** en fonctions de la largeur du conteneur de texte pour se **rapprocher de cette valeur de 50-70 CPL**.
+
+<note important>
+La taille du conteneur de texte dépends de la police du corps de texte afin d'avoir entre 50 et 70 caractères par ligne :
+**le CPL du titre, du sous-titre et des références** est donc contrains par le **corps de texte.** 
+</note>
+
+<note tip>
+On utilise la propriété CSS **max-width** pour définir le CPL:
+<file>
+p {
+    max-width:100px;
+}
+</file>
+</note>
+
+<note warning>
+Attention aux **veuves** (widows) et aux **orphelins** (orphans).
+
+Modifier si possible légèrement la taille de la police ou la taille des ligne pour l'éviter.
+
+**A évité absolument dans un titre !!**
+</note>
+
+{{:techs:web_design:widow_orphan.png?0x0}}
+
+
+===== Ressources =====
+[[http://papress.com/thinkingwithtype/letter/classification.htm| classification]]

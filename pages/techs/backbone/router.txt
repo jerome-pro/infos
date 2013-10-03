@@ -1,0 +1,35 @@
+{{indexmenu_n>20}}
+====== ROUTEUR ======
+
+===== creation =====
+<file>
+var AppRouter = Backbone.Router.extend({
+   
+   routes: {
+      "path": 'aFunction'
+   },
+   
+   aFunction: function(){
+      ...
+   }
+});
+</file>
+
+===== syntaxe des routes =====
+|  **matcher**  |   **URL**  |   **params**  |
+|search/:query | search/ruby | query = ‘ruby’|
+|search/:query/p:page | search/ruby/p2 | query = ‘ruby’, page = 2|
+|folder/:name-:mode | folder/foo-r |name = ‘foo’, mode = ‘r’|
+|file/*path | file/hello/world.txt | path = ‘hello/world.txt’|
+
+===== Activer l'historique =====
+<file>
+Backbone.history.start({pushState: true});
+</file>
+
+===== Naviguer programmatiquement =====
+Il faut activer la propriété "trigger" :
+<file>
+var router = new AppRouter();
+router.navigate("appointments/1", {trigger: true});
+</file>

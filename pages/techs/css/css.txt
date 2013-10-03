@@ -1,0 +1,128 @@
+====== CSS ======
+
+===== Ajouter CSS =====
+
+==== En ligne : attribut "**style**": ====
+ 
+
+<file>
+<h1 style="color: #98c7d4;">Titi Toto</h1>
+</file>
+
+
+==== dans le <head> ====
+ 
+
+<file>
+<head>
+   ...
+   <style>
+      h1 { color: #98c7d4; }
+   </style>
+</head>
+</file>
+
+==== dans un fichier externe ====
+<file>
+<head>
+   ...
+   <link rel="stylesheet" href="styles.css" />
+</head>
+</file>
+
+
+<note important>
+**TOUJOURS** privilégier un **fichier externe** pour définir les styles !!
+</note>
+
+===== Priorité du cascading =====
+
+
+==== Du plus important au moins important ====
+ 
+  - <link> : fichier externe
+  - dans le <head>
+  - en ligne
+  - avec la clause **!important**
+
+
+==== En fonction de la position dans le fichier externe ====
+
+**La dernière déclaration est celle qui gagne :**
+
+<file>
+.intro {
+   color: blue;
+}
+
+.intro {
+   color: red;
+}
+</file>
+
+la couleur prise en compte sera : **red**
+
+<note tip>
+Si il n'y a pas de conflits, les propriétés seront **MERGEES** :
+<file>
+.intro {
+   color: #dddadd;
+}
+
+.intro {
+   margin-bottom: 5px;
+   width: 900px;
+}
+</file>
+ équivaut à:
+
+<file>
+.intro {
+   color: #dddadd;
+   margin-bottom: 5px;
+   width: 900px;
+}
+</file>
+</note>
+
+==== Specificity ====
+
+
+Permet de déterminer la priorité des selecteurs CSS.
+
+
+{{:techs:css:specificity.png?400x175}}
+
+
+Du poids le plus fort au poids le plus faible :
+  - inline style
+  - sélection par ID (#)
+  - sélection par classe (.)
+  - sélection par type
+
+Soit : 
+|  **EXEMPLES**  |  **SPECIFICITY**  |
+| <file>p { color: #fff; }</file> | 0,0,0,1       (type) |
+| <file>.intro { color: #98c7d4; }</file> | 0,0,1,0    (classe) |
+| <file>#header { color: #444245; }</file> | 0,1,0,0    (identifiant) |
+| <file><h1 style="color: #000;">Mogul</h1></file> | 1,0,0,0    (inline) |
+| <file>p { color: #fff !important; }</file> | Priorité max : pas de specificity |
+
+Cela sert principalement pour la priorité des **sélecteurs imbriqués** (où l'**héritage CSS** entre en action):
+|  **EXEMPLES**  |  **SPECIFICITY**  | **PRIORITE** |
+| <file>.intro p.article {...}</file> |  0,0,2,1  |  **3**   |
+| <file>.intro ul li.active</file> |  0,0,2,2  |  **2**   |
+| <file>#header</file> |  0,1,0,0  |  **1**  |
+
+<note warning>
+Dans les exemples ci-dessus, on remarque que **chaque sélecteur d'un sélecteur composé ajoute sa propre valeur** à la specificity totale.
+</note>
+
+==== Ressources ====
+  * [[https://developer.mozilla.org/en/CSS_Reference | MDN CSS Reference]]
+  * [[http://css-tricks.com/ | CSS-Tricks]]
+  * [[http://html5boilerplate.com/ | HTML5 Boilerplate]]
+
+__Livres :__
+  * [[http://www.peachpit.com/store/product.aspx?isbn=0321808355 | Bulletproof Web Design]]
+  * [[http://www.abookapart.com/ | A Book Apart]]

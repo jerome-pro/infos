@@ -1,0 +1,109 @@
+{{indexmenu_n>7}}
+
+====== STASHING ======
+
+===== Placer les changement dans la pile de stases =====
+<file>
+
+git stash save "my comment for the stash"
+</file>
+
+<file>
+
+git stash     #raccourci de git stash save ( pas de commentaire associé)
+</file>
+
+
+
+==== Options ====
+
+__Ajouter les changements "untracked" dans le stase :__
+<file>
+git stash save --include-untracked
+</file>
+
+__Ajouter uniquement les changements "tracked" dans le stase :__
+<file>
+git stash save --keep-index
+</file>
+
+===== Visualiser les "stashes" dans la pile =====
+==== Tous les stashes ====
+ 
+<file>
+git stash list
+
+git stash list --stat  #ajoute un résumé des changements
+
+</file>
+
+==== Un stash particulier ====
+ 
+<file>
+git stash show            # shortcut pour git stash show stash@{0}
+
+git stash show stash@{2}  # un stash antérieur
+
+</file>
+
+=== Options ===
+__patch : affiche en plus les changements contenus dans le stash :__
+<file>
+git stash show            # shortcut pour git stash show stash@{0}
+
+git stash show stash@{2} --patch # un stash antérieur
+
+</file>
+===== Récupérer les "stashes" =====
+<file>
+
+git stash apply          # rétablit les fichiers. ils sont alors dans l'état UNSTAGED.
+
+git stash apply --index  # rétablit les fichiers. ils sont alors dans l'état STAGED.
+</file>
+
+<note tip>
+git stash apply est un raccourci de **git stash apply stash@{0}**.
+
+Dans ce cas, c'est le derniers stase inséré dans la pile de stases (LIFO) qui est récupérer.
+
+Pour récupérer un stash antérieur, il faut le nommé :
+
+<file>
+ex:
+
+git stash apply stash@{2}
+</file>
+</note>
+Pour connaitre les stashes présent dans la pile, il faut utiliser la l'option [[techs:git:stashing#visualiser_les_stashes_dans_la_pile|list]].
+
+
+<note important>
+Avec ****apply****, les stashes récupérés **ne sont pas supprimés** de la pile de stashes.
+
+Pour les supprimer en même temps qu'on les récupère, il faut utiliser **pop** :
+
+<file>
+git stash pop
+</file>
+
+</note>
+
+
+
+==== Supprimer des "stashes" ====
+
+git stash drop
+
+
+==== Créer une branche depuis un stash ====
+
+<file>
+git stash branch <branch_name> <stash_name>
+</file>
+
+par exemple :
+<file>
+git stash branch poodle stash@{0}
+</file>
+Créé la branche "poodle" à partir du dernier stash enregistré.

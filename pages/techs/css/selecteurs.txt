@@ -1,0 +1,90 @@
+{{indexmenu_n>1}}
+
+====== SELECTEURS ======
+
+===== 3 types basique de sélecteurs : =====
+
+  * par **type** (de l'élément HTML) 
+<file>
+elementname
+
+span {
+  background-color: DodgerBlue;
+  color: #ffffff;
+}
+</file>
+
+  * par **classe**  
+<file>
+.classname
+
+.classy {
+  background-color: DodgerBlue;
+}
+</file>
+
+  * par **ID** 
+<file>
+#idname
+
+#identified {
+  background-color: DodgerBlue;
+}
+</file>
+
+<note tip>
+Lorsque plusieurs sélecteurs définissent **les mêmes propriétés**, on,peut les regroupés en les **séparant par des virgules :**
+
+<file>
+   p, .class_toto, h6 {
+   font-size: 12px;
+}
+</file>
+79
+</note>
+
+===== selecteurs combinnés =====
+
+Les éléments de la sélection sont **attachés les uns aux autres** :
+
+| <file>p.class1 {...}</file> | élément de type "**p**" ayant la classe "**class1**" |
+| <file>.class1.class2 {...}</file> | l'élément possède ces **2 classes** |
+| <file>#id1.class1 {...}</file> | l'élément possède l'identifiant "**id1**" et à la classe "**class1**" |
+
+
+===== Sélecteurs imbriqués =====
+
+
+Les éléments de la sélection sont **séparés** les uns des autres **par un espaces** :
+
+
+| <file>
+
+.class1 p {...}
+</file> |élément de type "**p**" **A L'INTERIEUR d'un conteneur** ayant la classe "**class1**" |
+| <file>
+
+.class1 p a {...}
+</file> |les élément de type **anchor** contenus **A L'INTERIEUR des paragraphes** contenus **A L'INTERIEUR d'un conteneur** ayant la classe "**class1**  |
+
+
+<note tip>
+
+
+Les sélecteurs imbriqué permettent **de surcharger un style hérités d'un conteneur parent** :
+
+
+{{:techs:css:nested_selector.png?500x240}}
+
+
+</note>
+
+<note important>
+On utilise la **[[techs:css:css#specificity|specificity]]** des sélecteurs imbriqués pour connaitre leurs priorités respectives.
+</note>
+
+
+===== Ressources =====
+
+  * [[http://coding.smashingmagazine.com/2009/08/17/taming-advanced-css-selectors/| taming advanced css selectors]]
+

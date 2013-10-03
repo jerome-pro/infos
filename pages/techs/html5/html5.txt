@@ -1,0 +1,76 @@
+====== HTML5 ======
+
+===== Compatibilité =====
+Supporter par les principaux **sauf sur les version 8 et antérieur de IE** :
+
+{{:techs:html5:html5_browsers_compatibility.png?0x0}}
+
+
+Il faut donc **ajouter le script** (dans l'élément <head>) fourni par [[https://code.google.com/p/html5shim/|Remy Sharp]] pour garantir la compatibilité de IE :
+
+<file>
+<!--[if lt IE 9]>
+   <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+</file>
+
+===== Doctype =====
+
+<note tip>
+Le **DOCTYPE** est hyper **simple** : 
+<file>
+<!DOCTYPE html>                                                     /* HTML 5 */
+</file>
+Avant : 
+<file>
+   <!DOCTYPE html
+      PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">         /* Avant */
+</file>
+</note>
+
+
+===== L'élément foot : <html> =====
+
+<note tip>
+Le tag **<html>** est hyper **simple** aussi : 
+<file>
+<html lang="en">                                                    /* HTML 5 */
+</file>
+
+Avant :
+<file> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+   lang="en"
+   xml:lang="en">                                                  /* Avant */
+</file>
+</note>
+
+
+===== <head> =====
+Les **déclarations** dans la partie <head> du document sont aussi **simplifiées** :
+<note tip>
+le **codage des caractère** devient : 
+<file>
+<meta charset="UTF-8">                                             /* HTML 5 */
+</file>
+
+Avant :
+<file> 
+<meta http-equiv="Content-Type" content="text/html;
+charset=UTF-8">                                                   /* Avant */
+</file>
+</note>
+
+
+<note tip>
+**plus de déclaration de type**
+<file>
+<link rel="stylesheet" href="style.css">                          /* HTML 5 */
+</file>
+
+Avant :
+<file> 
+<link rel="stylesheet" href="style.css" type="text/css">          /* Avant */
+</file>
+</note>

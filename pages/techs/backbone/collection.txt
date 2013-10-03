@@ -1,0 +1,161 @@
+{{indexmenu_n>10}}
+
+====== COLLECTION ======
+
+===== Définir une collection (de modèle) =====
+<file>
+var AppointmentList = Backbone.Collection.extend(
+  {
+    model: Appointment
+  }
+);
+</file>
+
+===== Méthodes principales =====
+__**length**: Nombre de modeles dans la collection __
+<file>todoList.length;</file>
+
+__**add**: Ajouter un modèle__
+<file>todoList.add(todoItem1);</file>
+
+
+__**at**: Retrouver un modèle par sa position dans la collection__
+<file>todoList.at(0);</file>
+
+__**get**: Retrouver un modèle par son identifiant__
+<file>todoList.get(1);</file>
+
+__**remote**: retirer un modèle d'une collection__
+todoList.remove(todoItem1);</file>
+
+===== Bulk loading : reset() =====
+La fonction "**reset**" permet de charger un ensemble de modèles (**tableau**) dans une collection **en une seule fois** :
+<file>
+var appointments = new AppointmentList();
+var json = [
+  {title: 'Back pain'},
+  {title: 'Dry mouth'},
+  {title: 'Headache'} 
+];
+
+// Bulk load
+appointments.reset(json);
+</file>
+
+===== Echange avec le serveur =====
+
+==== fetch ====
+La méthode "fetch" permet de **récupérer des instances de modèle** sur le serveur : 
+
+Il faut d'abord **définir l'URL de chargement des modèles** :
+
+__lors de la création de la collection :__\\ 
+Il faut alors définir la propriété 'url' comme suit:
+<file>
+var AppointmentList = Backbone.Collection.extend({
+  model: Appointment,
+  url: '/appointments'  /* ici */
+});
+</file>
+
+__après la création de la collection :__
+<file>
+var AppointmentList = Backbone.Collection.extend({
+  model: Appointment,
+});
+var appointments = new AppointmentList();
+...
+appointments.url = '/accounts';  /* ici */
+</file>
+\\ 
+\\ 
+Puis **invoquer** la méthode **fetch** de la collection:
+<file>
+appointments.fetch();  /* chargement depuis le serveur */
+</file>
+
+===== Evénement (events) =====
+<file>collection.on(<event>, <method>);</file> permet d'**ajouter un listener** d'événement à une collection.
+
+<file>
+var appointments = new AppointmentList();
+...
+appointments.on('reset', function(){
+   alert(appointments.length);
+});
+</file>
+
+<note tip>
+Pour supprimer un listener, on utilise "**off**" :
+<file>
+appointments.off('reset', myFonction);
+</file>
+</note>
+
+===== Evénements personnalisés ( custom events) =====
+
+On peut **lancer ses propres évents**:
+<file>
+model.trigger('myEvent'); 
+</file>
+
+et les écouter :
+<file>
+model.on('myEvent', "myFunction");
+</file>
+
+<note warning>
+Ne pas oublier d'ajouter "**this**" si le listener est **défini dans la vue** (this = la vue => la vue est le contexte d'exécution de "myFunction").
+<file>
+this.model.on('myEvent', "myFunction", this);
+</file>
+</note>
+===== Iteration =====
+Backbone propose des **fonctions d'itération basées sur underscore.js** \\ 
+//[[http://documentcloud.github.com/backbone/#Collection-Underscore-Methods]]//
+
+\\ 
+On y trouve notamment "**forEach**":
+<file>
+todoList.forEach(function(model){
+   alert(model.get('description'));
+});
+</file>
+\\ 
+"**map**" qui renvoie des tableaux, contenant les valeurs de la propriété voulue : 
+<file>
+todoList.map(function(todoItem){
+   return todoItem.get('description'); 
+});
+</file>
+\\ 
+
+"**filter**" qui renvoie des tableaux, contenant les valeurs de la propriété correspondant au critère de filtrage : 
+<file>
+todoList.filter(function(todoItem){
+   return todoItem.get('status') === "incomplete";  /* critère de filtrage */ 
+});
+</file>
+__Les événements pré-définis sont :__
+
+|add| Quand un **modèle est ajouté**|
+|remove| Quand un **modèle est retiré**|
+|reset| lorsque les méthode "**reset**" ou "**fetch**" sont invoquées. |
+
+<note tip>
+On peut supprimer la notification en ajoutant: **{silent: true}**\\ 
+
+par warning:
+<file>
+appointments.fetch({silent: true});
+</file>
+\\ 
+Cepandant, le documentation de backbone ne conseille pas cette méthode : \\ 
+//Note that this is rarely, perhaps even never, a good idea. Passing through a specific flag in the options for your event callback to look at, and choose to ignore, will usually work out better.//
+
+(voir [[http://backbonejs.org/#Events-catalog | documentation]] backbone).
+
+</note>
+
+
+

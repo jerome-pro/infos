@@ -1,0 +1,170 @@
+{{indexmenu_n>3}}
+
+
+====== CLONING & BRANCHING ======
+
+
+===== CLONING =====
+
+
+==== Cloner un repository ====
+
+
+<file>
+git clone <remote_URL> [local_repo_name]
+</file>
+
+
+===== BRANCHING =====
+
+
+==== Créer une branche ====
+
+=== Locale ===
+
+<file>
+git branch <branch_name>
+
+ex : 
+git branch cat
+</file>
+
+=== Distante (remote) ===
+<file>
+git push origin <branch_name>
+
+ex : git push origin cat
+</file>
+<note warning>
+C'est un abus de langage ! Avec push, une branche n'est pas créée sur le remote, mais une branche locale à été publier sur le remote. Mais il faut d'abord avoir une branche locale pour en créer une remote.
+</note>
+
+=== Depuis un commit ===
+<file>
+git branch <new_branch_name> <sha1_commit>
+
+ex : 
+git branch new_branch_name b6bb78f
+</file>
+
+
+
+==== Supprimer une branche ====
+
+=== Locale ===
+
+<file>
+git branch -d <branch_name> // tout doit être commité
+git branch -D <branch_name> // ne tient pas compte des changements non commités 
+
+ex : git branch -d cat
+</file>
+
+=== Distante (remote) ===
+<file>
+git push origin :<branch_name>
+
+ex : git push origin :cat
+</file>
+
+<note tip>
+<code>git remote prune <remote_name>
+
+ex:
+git remote prune origin
+</code> pour nettoyer les références aux branches supprimées. 
+</note>
+==== Visualisation des branches ====
+|<file>git branch</file>|locales|
+|<file>git branch -r</file>|remotes|
+|<file>git branch -a</file>|locales et remotes|
+
+<note warning>
+Il faut avoir fait un <file>git fetch</file> ou un <file>git pull</file> pour voir les branches distantes.
+</note>
+==== Changer de branche ====
+
+
+<file>
+git checkout <branch_name>
+
+ex : git checkout cat
+</file>
+
+
+<note tip>  Créer et Changer de branche
+<file>
+git checkout -b <branch_name>
+
+ex : git checkout cat
+</file>
+
+
+</note>
+==== Fusionner 2 branches (merge) ====
+
+
+    - Aller sur la branche **DESTINATION**.
+    - Effectuer le merge de la branche SOURCE dans la branche courante (i.e : DESTINATION).
+
+
+<file>
+git checkout <destination_branch>
+git merge <source_branch>
+
+ex : 
+git checkout master
+git merge cat
+</file>
+
+Lorsque le merge n'est pas un "fast-forward", Git demande de saisir un commentaire avec VI.
+
+Principales commandes VI:
+
+{{:techs:git:vi_cmd.png?0x0}}
+
+==== Cherry-pick ====
+
+
+Cherry-pick signifie : récupérer **un commit particulier** d'une branche dans une autre :
+
+
+{{:techs:git:git_cherry-pick.png?354x213}}
+
+
+<file>
+git cherry-pick [-x] <sha1_commit>
+
+ex :
+git cherry-pick 5321a6
+
+git cherry-pick -x 5321a6 #Ajoute l'origine du cherry-pick dans le commentaire
+</file>
+<note important>
+Il faut ce placer **sur la branche destinataire** avant de lancer la commande.
+</note>
+
+=== Options ===
+**__edit__** : changer le commentaire du commit:
+<file>
+git cherry-pick --edit 5321a6
+</file>
+
+**__no-commit__** : récupérer les changements d'un (ou plusieurs)  commit(s), sans commuter dans la branche destinatrice:
+<file>
+git cherry-pick --no-commit <sha1_commit> [<sha1_other_commit> …]
+
+
+ex:
+git cherry-pick --no-commit 5321a6 5271e7
+</file>
+
+<note warning>
+Les changements sont stagged, mais il **ne faut pas oublier de commiter**.
+</note>
+
+**__signoff__** : ajoute le nom de l'auteur du cherry-pick dans le commentaire du commit :
+
+<file>
+git cherry-pick --signoff 5321a6
+</file>

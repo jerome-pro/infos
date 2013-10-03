@@ -1,0 +1,23 @@
+{{indexmenu_n>5}}
+
+====== COLORS ======
+===== Théorie des couleurs =====
+
+==== Soustraction de couleurs ====
+CMYK (Cyan Magenta Yellow Black)
+
+==== Addition de couleurs ====
+RGB - Red Green Blue.
+
+Système de couleurs des **écrans**.
+
+<note important>
+Pour le **WEB**, on utilise le système **RGB** (puisqu'on est sur écran).
+</note>
+
+==== Vision humaine : HSL ====
+
+HSL - Hue Saturation Lightness (Teinte Saturation Luminosité)
+
+===== color schemes =====
+J'utilise le terme anglais (**color schemes = combinaisons de couleurs, jeux de couleurs**) car les **recherches internet** sont (bien) plus **pertinentes** ([[https://www.google.com/search?hl=en&q=color+scheme#fp=cc43d7eace8ddde8&hl=en&q=color+schemes| google]]).

@@ -1,0 +1,64 @@
+{{indexmenu_n>7}}
+
+====== SUBMODULE ======
+
+
+===== Créer un submodule =====
+Pour ajouter un nouveau submodule dans un projet GIT :
+<file>
+git submodule add <URL>
+
+ex:
+git submodule add git@example.com:css.git
+</file> 
+
+===== Récupérer un submodule =====
+
+Pour récupérer un submodule existant et l'ajouter dans un projet :
+<file>
+git submodule init
+
+git submodule update
+</file> 
+
+===== Push submodule =====
+
+
+===== 
+1. Aller dans le répertoire du submodule et pusher :
+ =====
+
+
+<file>
+cd sub_directory
+
+git push
+</file>
+
+
+2. Retourner dans le répertoire du projet (root), et pusher :
+
+
+<file>
+cd ..
+
+git push
+</file>
+
+
+<note tip> Vérifier lors d'un push si les submodules on bien étés pushés avant en utilisant l'option **–recurse-submodules=on-check** :
+<file>
+git push --recurse-submodules=check
+</file>
+
+
+</note>
+
+
+<note tip> On peut forcer le push des submodules en même temps que le push du projet en utilisant l'option **–recurse-submodules=on-demand** :
+<file>
+git push --recurse-submodules=on-demand
+</file>
+
+
+</note>

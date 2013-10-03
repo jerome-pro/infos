@@ -1,0 +1,37 @@
+====== EVENT ======
+
+===== EventEmitter =====
+==== Création ====
+=== Importer le package et référencer la constructeur ===
+ 
+<file>
+var events = require('events');
+
+var EventEmitter = events.EventEmitter;
+</file>
+
+=== Instancier ===
+<file>
+...
+var chat = new EventEmitter();
+</file>
+
+=== Ecouter les évenements ===
+<file>
+//listen to events of type 'message'
+chat.on('message', function(event){
+   console.log(event);
+});
+</file>
+
+=== Emettre des événements ===
+<file>
+...
+chat.emit('message', "string1");
+</file>
+
+<file>
+</file>
+
+<file>
+</file>

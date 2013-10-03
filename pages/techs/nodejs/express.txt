@@ -1,0 +1,111 @@
+====== EXPRESS ======
+
+===== Routes =====
+<file>
+var express = require('express');
+//var app = express.createServer(); // deprecated
+var app = express();
+
+// create a route
+app.get("/tweets", function(req, res) {
+   res.sendfile(__dirname + "/tweets.html"); 
+});
+app.listen(8080);        
+</file>
+
+<note warning>
+"express.createServer()" **is deprecated**, express
+applications no longer inherit from http.Server,
+please use:
+
+  var express = require("express");
+  var app = express();
+
+
+</note>
+===== Récupérer les paramètres d'une requête =====
+==== Route parameters ====
+La récupération se fait en utilisant "**req.params.<param_name>**" :
+<file>
+var express = require('express');
+var app = express();
+...
+app.get("/users/:name", function(req, response) {
+  var name = req.params.name; // get parameter value 
+  ...
+});
+</file>
+
+| **Reqête** | **code** | **résultat** |
+| <file>GET /user/tj</file> | <file>/user/:name 
+... 
+req.params.name</file> | "tj" |
+
+
+==== Query parameters ====
+La récupération se fait en utilisant "**req.query.<param_name>**" :
+
+<file>
+var express = require('express');
+var app = express();
+...
+app.get("/users", function(req, response) {
+  var name = req.query.n; // get query parameter value 
+  ...
+});
+</file>
+
+<note important>
+Il n'y à **PAS** mention des paramètres de la requête **dans la route**.
+</note>
+
+| **Reqête** | **code** | **résultat** |
+| <file>GET /search?q=tobi+ferret</file> | <file>req.query.q</file> | "tobi ferret" |
+| <file>GET /shoes?order=desc&shoe[color]=blue&shoe[type]=converse</file> | <file>req.query.order</file> | "desc" |
+| <file>GET /shoes?order=desc&shoe[color]=blue&shoe[type]=converse</file> | <file>req.query.shoe.color</file> | "blue" |
+| <file>GET /shoes?order=desc&shoe[color]=blue&shoe[type]=converse</file> | <file>req.query.shoe.type</file> | "converse" |
+
+
+===== Templating =====
+
+
+
+
+<file>
+</file>
+
+<file>
+</file>
+
+<file>
+</file>
+
+<file>
+</file>
+
+<file>
+</file>
+
+<file>
+</file>
+
+<file>
+</file>
+
+<file>
+</file>
+
+<file>
+</file>
+
+<file>
+</file>
+
+<file>
+</file>
+
+<file>
+</file>
+
+<file>
+</file>

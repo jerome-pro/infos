@@ -1,0 +1,31 @@
+{{indexmenu_n>7}}
+
+
+====== DATA ======
+
+===== Ajouter des données à un élément =====
+
+On peut ajouter des informations à un élément du DOM en créant un attribut commençant par **data-** :
+
+<file>
+<li class="onsale" data-price='399.99'>
+</file>
+
+Dans cet exemple, on ajoute l'information "**price**" à l'élément "li".
+
+On **récupère** la valeur de cet attribut ainsi :
+<file>
+.data(<name>)
+
+ex:
+var price = $('.vacation').data('price');
+</file>
+
+On **positionne** la valeur de cet attribut ainsi :
+<file>
+.data(<name>, <value>)
+
+ex:
+$('.vacation').data('price', 299.00);
+</file>
+

@@ -1,0 +1,52 @@
+{{indexmenu_n>1}}
+
+====== TAGS ======
+Issue de l'analyse par google des **principales classifications des éléments HTML** observées lors du crowling du web.
+
+===== <header> =====
+<note warning>
+Ne pas confondre **<head> et <header>** !!
+</note>
+
+===== <hgroup> =====
+(Déjà) [[http://www.webmonkey.com/2013/04/w3c-drops-hgroup-tag-from-html5-spec/|deprecated]] 
+
+
+===== <nav> =====
+
+Section possédant des liens de vers d'autres pages du site.
+
+<note warning>
+<nav> définit la navigation d'**un site** ou d'**une page d'un site**.
+
+Ce **n'est pas** un ensemble de liens vers des documents extérieurs comme dans une **bibliographie** où des [[techs:css:css#ressources|références]].
+</note>
+
+===== <section> =====
+Section générique regroupant un même sujet, une même fonctionnalité, de préférence avec un en-tête, ou bien section d'application web.
+
+<note tip>
+<article> VS <section>
+
+Généralement, une section peut regrouper plusieurs articles.
+
+Un article doit pouvoir être extrait du site et être entièrement compréhensible (flus RSS par exemple).
+</note>
+===== <article> =====
+Section de contenu indépendante, pouvant être extraite individuellement du document ou syndiquée (flux RSS ou équivalent), sans pénaliser sa compréhension.
+===== <aside> =====
+Section dont le contenu est un complément par rapport à ce qui l'entoure, qui n'est pas forcément en lien direct avec le contenu mais qui peut apporter des informations supplémentaires.
+
+===== <footer> =====
+Section de conclusion d'une section ou d'un article, voire du document entier (pied de page).
+
+===== <time> =====
+Permet de rendre une date lisible pour les crowlers, tout en les écrivant comme on le souhaite :
+ 
+<file>
+<time datetime='2011-05-18' pubdate>Ce que je veux comme format</time>
+</file>
+
+  * __datetime__ : format strict : lisible par un crowler.
+  * __pubdate__  : si présent, indique qu'il s'agit de la date de publication du texte (encore une infos pour les crowlers).
+  * __Ce que je veux comme format__ : le texte indiquant la date pour les lecteurs (avec toute la liberté de format que je veux). 
